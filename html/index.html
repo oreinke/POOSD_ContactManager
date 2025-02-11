@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="login">
+      <h1 class="login__heading">Login</h1>
+      
+      <form class="login__form" id="login-form">
+        <fieldset class="login__fieldset">
+          <legend class="login__legend">Login credentials</legend>
 
+          <div class="login__input-group">
+            <label for="username" class="login__label">Username:</label>
+            <input type="text" id="username" name="username" class="login__input" required placeholder="Enter your username" required>
+          </div>
+
+          <div class="login__input-group">
+            <label for="password" class="login__label">Password:</label>
+            <input type="password" id="password" name="password" class="login__input" required placeholder="Enter your password" required>
+          </div>
+        </fieldset>
+        
+        <button type="submit" class="login__button">Login</button>
+      </form>
+      
+      <p class="login__signup-prompt">Don't have an account? <a href="/register.html" class="login__signup-link">Register here</a></p>
+    </section>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>
