@@ -1,3 +1,15 @@
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --text-color: #333;
+    --label-color: #555;
+    --input-border: #ccc;
+    --button-hover: #5648a0;
+    --background-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
 
 * {
     box-sizing: border-box;
@@ -5,77 +17,89 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: var(--background-gradient);
 }
+
 .auth {
     background: white;
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
     width: 350px;
     text-align: center;
     animation: fadeIn 0.5s ease-in-out;
 }
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
 .auth__title {
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
 }
+
 .auth__group {
     margin-bottom: 15px;
     text-align: left;
 }
+
 .auth__label {
     display: block;
     font-size: 14px;
     margin-bottom: 5px;
-    color: #555;
+    color: var(--label-color);
 }
+
 .auth__input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border);
     border-radius: 6px;
     font-size: 16px;
-    transition: border-color 0.3s;
+    transition: border-color var(--transition-speed);
 }
+
 .auth__input:focus {
-    border-color: #667eea;
+    border-color: var(--primary-color);
     outline: none;
 }
+
 .auth__button {
     width: 100%;
     padding: 12px;
-    background: #667eea;
+    background: var(--primary-color);
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    transition: background 0.3s;
+    transition: background var(--transition-speed);
 }
+
 .auth__button:hover {
-    background: #5648a0;
+    background: var(--button-hover);
 }
+
 .auth__toggle {
     margin-top: 15px;
     font-size: 14px;
     cursor: pointer;
-    color: #667eea;
-    transition: color 0.3s;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
 }
+
 .auth__toggle:hover {
     text-decoration: underline;
-    color: #5648a0;
+    color: var(--button-hover);
 }
