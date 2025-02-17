@@ -14,13 +14,13 @@ if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     // Fix SQL query for user authentication
-    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username=? AND password=?");
+    $stmt = $conn->prepare("SELECT id FROM users WHERE username=? AND password=?");
     $stmt->bind_param("ss", $inData["username"], $inData["password"]);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        returnWithInfo ($row['first_name'], $row['last_name'], $row['id']);
+        returnWithInfo ($row['id']);
     } else {
         returnWithError("No Records Found");
     }
@@ -43,10 +43,11 @@ function returnWithError($err) {
     	sendResultInfoAsJson($retValue);
 }
 
-function returnWithInfo($first_name, $last_name, $id) {
-    $retValue = '{"id":' . $id . ',"first_name":"' . $first_name . '","last_name":"' . $last_name . '","error":""}';
+function returnWithInfo($id) {
+    $retValue = '{"id":' . $id . ',"error":""}';
     sendResultInfoAsJson($retValue);
 }
+
 
 
 ?>
