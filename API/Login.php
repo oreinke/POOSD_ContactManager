@@ -2,25 +2,23 @@
 
 $inData = getRequestInfo();
 
+$id = 0;
+$first_name = "";
+$last_name = "";
+
 $conn = new mysqli("localhost", "dba", "dbapass", "contact_manager");
 
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     // Fix SQL query for user authentication
-    $stmt = $conn->prepare("SELECT id, first_name, last_name, password FROM users WHERE username = ?");
-    
-    $stmt->bind_param("s", $inData["login"]);
+    $stmt = $conn->prepare("SELECT id FROM users WHERE username=? AND passw>
+    $stmt->bind_param("ss", $inData["username"], $inData["password"]);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     if ($row = $result->fetch_assoc()) {
-        // Verify password
-        if (password_verify($inData["password"], $row['password'])) {
-            returnWithInfo($row['first_name'], $row['last_name'], $row['id']);
-        } else {
-            returnWithError("Invalid Password");
-        }
+        returnWithInfo ($row['first_name'], $row['last_name'], $row['id']);
     } else {
         returnWithError("No Records Found");
     }
@@ -36,16 +34,14 @@ function getRequestInfo() {
 function sendResultInfoAsJson($obj) {
     header('Content-type: application/json');
     echo $obj;
-}
+    }
 
 function returnWithError($err) {
-    $retValue = '{"results":[],"error":"' . $err . '"}';
-    sendResultInfoAsJson($retValue);
+    $retValue = '{"id":0, "first_name":"","last_name":"","error":"'.$err .'>    sendResultInfoAsJson($retValue);
 }
 
-function returnWithInfo($firstName, $lastName, $id) {
-    $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-    sendResultInfoAsJson($retValue);
+function returnWithInfo($first_name, $last_name, $id) {
+    $retValue = '{"id":' . $id . ',"first_name":"' . $first_name . '","last>    sendResultInfoAsJson($retValue);
 }
 
 ?>
