@@ -46,7 +46,12 @@ function doRegister()
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
-    document.getElementById("loginResult").innerHTML = "";
+    let loginResult = document.getElementById("loginResult");
+    if (loginResult) {
+        loginResult.innerHTML = "";
+    } else {
+        console.error("Element with ID 'loginResult' not found in DOM.");
+    }
 
     let tmp = { username: username, password: password };
     let jsonPayload = JSON.stringify(tmp);
@@ -86,7 +91,9 @@ function doRegister()
     }
     catch(err)
     {
-        document.getElementById("loginResult").innerHTML = err.message;
+       if (loginResult) {
+            loginResult.innerHTML = err.message;
+        }
     }
 }
 
@@ -100,7 +107,12 @@ function doLogin()
     let login = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
-    document.getElementById("loginResult").innerHTML = "";
+    let loginResult = document.getElementById("loginResult");
+    if (loginResult) {
+        loginResult.innerHTML = "";
+    } else {
+        console.error("Element with ID 'loginResult' not found in DOM.");
+    }
 
     let tmp = { username: login, password: password };
     let jsonPayload = JSON.stringify(tmp);
@@ -145,7 +157,9 @@ function doLogin()
     }
     catch(err)
     {
-        document.getElementById("loginResult").innerHTML = err.message;
+      if (loginResult) {
+            loginResult.innerHTML = err.message;
+        }
     }
 }
 
