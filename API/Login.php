@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     // Fix SQL query for user authentication
-    $stmt = $conn->prepare("SELECT id,first_name, last_name FROM users WHERE username=? AND password=?");
+    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username=? AND password=?");
     $stmt->bind_param("ss", $inData["username"], $inData["password"]);
     $stmt->execute();
     $result = $stmt->get_result();
