@@ -37,7 +37,8 @@ function sendResultInfoAsJson($obj) {
     }
 
 function returnWithError($err) {
-    $retValue = '{"id":0, "first_name":"","last_name":"","error":"'.$err .'>    sendResultInfoAsJson($retValue);
+	$retValue = '{"id":0, "first_name":"","last_name":"","error":"' . $err .'"}';
+    	sendResultInfoAsJson($retValue);
 }
 
 function returnWithInfo($first_name, $last_name, $id) {
