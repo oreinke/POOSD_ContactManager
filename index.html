@@ -20,9 +20,8 @@
                 <input class="auth__input" type="password" id="password" autocomplete="current-password" required>
             </div>
             <button type="button" class="auth__button" onclick="doLogin();">Login</button>
-	    <button type="submit" class="auth__button" onclick="doRegister(); return false;">Register</button>
         </form>
-        <p class="auth__toggle" onclick=toggleAuth()>Don't have an account? Register</p>
+        <p class="auth__toggle" onclick="toggleAuth()">Don't have an account? <span id="toggle-text">Register</span></p>
     </div>
 
     <script src="../javascript/script.js"></script>
