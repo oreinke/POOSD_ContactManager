@@ -21,7 +21,7 @@ function toggleAuth() {
                 <label class="auth__label" for="password">Password</label>
                 <input class="auth__input" type="password" id="password" required>
             </div>
-            <button type="submit" class="auth__button">Register</button>
+            <button type="submit" class="auth__button" id="auth-button" onclick="doRegister(); return false;">Register</button>
         `;
         toggleText.textContent = 'Already have an account? Login';
     } else {
@@ -40,6 +40,56 @@ function toggleAuth() {
         toggleText.textContent = "Don't have an account? Register";
     }
 }
+
+function doRegister()
+{
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    document.getElementById("loginResult").innerHTML = "";
+
+    let tmp = { username: username, password: password };
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/Register.php';
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4) 
+            {
+                console.log("Response:", this.responseText); // ✅ Debug log
+
+                if (this.status == 200) 
+                {
+                    let jsonObject = JSON.parse(xhr.responseText);
+                    console.log("Parsed JSON:", jsonObject); // ✅ Debug parsed data
+
+                    if (jsonObject.error.length > 0) 
+                    {
+                        document.getElementById("loginResult").innerHTML = jsonObject.error;
+                        return;
+                    }
+
+                    alert("Registration successful! Please log in.");
+                    window.location.href = "index.html"; // Redirect to login page
+                }
+            }
+        };
+
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
+}
+
 
 function doLogin()
 {
