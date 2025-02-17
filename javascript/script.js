@@ -67,6 +67,7 @@ function doLogin()
 	{
 	    if (this.readyState == 4) 
 	    {
+		
 		console.log("Response:", this.responseText);  // ✅ Debug log
 
 		if (this.status == 200) 
