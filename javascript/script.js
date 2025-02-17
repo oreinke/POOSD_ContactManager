@@ -34,8 +34,8 @@ function toggleAuth() {
             <div class="auth__group">
                 <label class="auth__label" for="password">Password</label>
                 <input class="auth__input" type="password" id="password" required>
-		            </div>
-            <button type="submit" class="auth__button">Login</button>
+		    </div>
+             <button type="button" class="auth__button" onclick="doLogin()">Login</button>
         `;
         toggleText.textContent = "Don't have an account? Register";
     }
