@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 $inData = getRequestInfo();
 
@@ -43,7 +45,8 @@ function returnWithError($err) {
 
 function returnWithInfo($first_name, $last_name, $id) {
     $retValue = '{"id":' . $id . ',"first_name":"' . $first_name . '","last_name":"' . $last_name . '","error":""}';
-	sendResultInfoAsJson($retValue);
+    sendResultInfoAsJson($retValue);
 }
+
 
 ?>
