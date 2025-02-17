@@ -159,7 +159,7 @@ function addContact()
     let tmp = { userId: userId, first_name: firstName, last_name: lastName, email: email };
     let jsonPayload = JSON.stringify(tmp);
     
-    let url = urlBase + '/addcontact.' + extension;
+    let url = urlBase + '/AddContacts.php';
     
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -190,7 +190,7 @@ function searchContacts()
     let tmp = { search: srch, userId: userId };
     let jsonPayload = JSON.stringify(tmp);
     
-    let url = urlBase + '/searchcontacts.' + extension;
+    let url = urlBase + '/SearchContacts.php';
     
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -237,7 +237,7 @@ function deleteContact(contactId)
     let tmp = { id: contactId, userId: userId };
     let jsonPayload = JSON.stringify(tmp);
     
-    let url = urlBase + '/deletecontact.' + extension;
+    let url = urlBase + '/DeleteContacts.php';
     
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -273,7 +273,7 @@ function editContact(contactId, firstName, lastName, email)
     let tmp = { id: contactId, userId: userId, first_name: newFirstName, last_name: newLastName, email: newEmail };
     let jsonPayload = JSON.stringify(tmp);
     
-    let url = urlBase + '/editcontacts.' + extension;
+    let url = urlBase + '/EditContacts.php';
     
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
