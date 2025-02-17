@@ -64,25 +64,32 @@ function doLogin()
     try
     {
         xhr.onreadystatechange = function() 
-        {
-            if (this.readyState == 4 && this.status == 200) 
-            {
-                let jsonObject = JSON.parse(xhr.responseText);
-                userId = jsonObject.id;
+	{
+	    if (this.readyState == 4) 
+	    {
+		console.log("Response:", this.responseText);  // ✅ Debug log
 
-                if (userId < 1) 
-                {		
-                    document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-                    return;
-                }
+		if (this.status == 200) 
+		{
+		    let jsonObject = JSON.parse(xhr.responseText);
+		    console.log("Parsed JSON:", jsonObject); // ✅ Debug parsed data
 
-                first_name = jsonObject.first_name;
-                last_name = jsonObject.last_name;
+		    if (jsonObject.error.length > 0) 
+		    {
+			document.getElementById("loginResult").innerHTML = jsonObject.error;
+			return;
+		    }
 
-                saveCookie();
-                window.location.href = "contacts.html";
-            }
-        };
+		    userId = jsonObject.id;
+		    first_name = jsonObject.first_name;
+		    last_name = jsonObject.last_name;
+
+		    saveCookie();
+		    window.location.href = "contacts.html";
+		}
+	    }
+	};
+
         xhr.send(jsonPayload);
     }
     catch(err)
