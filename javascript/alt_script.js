@@ -55,7 +55,7 @@ function doLogin()
     let tmp = { username: login, password: password };
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/login.' + extension;
+    let url = urlBase + '/Login.php';
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
