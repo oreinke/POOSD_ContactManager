@@ -50,7 +50,7 @@ function doLogin()
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
-	let url = urlBase + '/Login.' + extension;
+	let url = "http://52.44.189.230/";
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -75,7 +75,7 @@ function doLogin()
 
 				saveCookie();
 	
-				window.location.href = "color.html";
+				window.location.href = "contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
