@@ -6,38 +6,21 @@ let first_name = "";
 let last_name = "";
 
 function toggleAuth() {
-    const authTitle = document.getElementById('auth-title');
-    const authForm = document.getElementById('auth-form');
-    const toggleText = document.querySelector('.auth__toggle');
+    const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
+    const authTitle = document.getElementById("auth-title");
+    const toggleText = document.getElementById("toggle-text");
 
-    if (authTitle.textContent === 'Login') {
-        authTitle.textContent = 'Register';
-        authForm.innerHTML = `
-            <div class="auth__group">
-                <label class="auth__label" for="username">Username</label>
-                <input class="auth__input" type="text" id="username" required>
-            </div>
-            <div class="auth__group">
-                <label class="auth__label" for="password">Password</label>
-                <input class="auth__input" type="password" id="password" required>
-            </div>
-            <button type="submit" class="auth__button" id="auth-button" onclick="doRegister(); return false;">Register</button>
-        `;
-        toggleText.textContent = 'Already have an account? Login';
+    if (loginForm.style.display === "none") {
+        loginForm.style.display = "block";
+        registerForm.style.display = "none";
+        authTitle.innerText = "Login";
+        toggleText.innerText = "Register";
     } else {
-        authTitle.textContent = 'Login';
-        authForm.innerHTML = `
-            <div class="auth__group">
-                <label class="auth__label" for="username">Username</label>
-                <input class="auth__input" type="text" id="username" required>
-            </div>
-            <div class="auth__group">
-                <label class="auth__label" for="password">Password</label>
-                <input class="auth__input" type="password" id="password" required>
-		    </div>
-             <button type="button" class="auth__button" onclick="doLogin()">Login</button>
-        `;
-        toggleText.textContent = "Don't have an account? Register";
+        loginForm.style.display = "none";
+        registerForm.style.display = "block";
+        authTitle.innerText = "Register";
+        toggleText.innerText = "Login";
     }
 }
 
@@ -161,6 +144,25 @@ function doLogin()
             loginResult.innerHTML = err.message;
         }
     }
+}
+
+function togglePasswordVisibility() {
+    const passwordInputs = document.querySelectorAll('.auth__input[type="password"]');
+    const toggleIcons = document.querySelectorAll('.auth__toggle-icon');
+
+    toggleIcons.forEach((icon, index) => {
+        icon.addEventListener('click', function () {
+            if (passwordInputs[index].type === 'password') {
+                passwordInputs[index].type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInputs[index].type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
 }
 
 function saveCookie()
@@ -362,3 +364,4 @@ function editContact(contactId, firstName, lastName, email)
     }
 }
 
+document.addEventListener("DOMContentLoaded", togglePasswordVisibility);
