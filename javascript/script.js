@@ -10,16 +10,19 @@ function toggleAuth() {
     const registerForm = document.getElementById("register-form");
     const authTitle = document.getElementById("auth-title");
     const toggleText = document.getElementById("toggle-text");
+    const toggleTextPrefix = document.getElementById("toggle-text-prefix");
 
     if (loginForm.style.display === "none") {
         loginForm.style.display = "block";
         registerForm.style.display = "none";
         authTitle.innerText = "Login";
+        toggleTextPrefix.innerText = "Don't have an account?"
         toggleText.innerText = "Register";
     } else {
         loginForm.style.display = "none";
         registerForm.style.display = "block";
         authTitle.innerText = "Register";
+        toggleTextPrefix.innerText = "Already have an account?"
         toggleText.innerText = "Login";
     }
 }
@@ -65,7 +68,13 @@ function doRegister()
                     }
 
                     alert("Registration successful! Please log in.");
-                    window.location.href = "index.html"; // Redirect to login page
+                    
+                    // Switch to login form instead of redirecting
+                    document.getElementById("register-form").style.display = "none";
+                    document.getElementById("login-form").style.display = "block";
+                    document.getElementById("auth-title").innerText = "Login";
+                    document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
+                    document.getElementById("toggle-text").innerText = "Register";
                 }
             }
         };

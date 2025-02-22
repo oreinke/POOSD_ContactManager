@@ -36,12 +36,6 @@ else
     if ($stmt->execute()) 
     {
         returnWithSuccess("User registered successfully");
-
-        // Switch to login form instead of redirecting
-        document.getElementById("register-form").style.display = "none";
-        document.getElementById("login-form").style.display = "block";
-        document.getElementById("auth-title").innerText = "Login";
-        document.getElementById("toggle-text").innerText = "Register";
     } 
     else 
     {
