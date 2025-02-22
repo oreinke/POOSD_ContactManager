@@ -24,13 +24,7 @@
         
         while ($row = $result->fetch_assoc())
         {
-            if ($searchCount > 0)
-            {
-                $searchResults .= ",";
-            }
-            $searchCount++;
-            $searchResults .= '{"id":' . $row["id"] . ',"first_name":"' . $row["first_name"] . '",
-                                "last_name":"' . $row["last_name"] . '","email":"' . $row["email"] . '"}';
+           $searchResults[] = $row; 
         }
         
         if ($searchCount == 0)
