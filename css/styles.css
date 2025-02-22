@@ -50,6 +50,10 @@ body {
 }
 
 .auth__group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
     margin-bottom: 15px;
     text-align: left;
 }
@@ -64,6 +68,7 @@ body {
 .auth__input {
     width: 100%;
     padding: 10px;
+    padding-right: 40px;
     border: 1px solid var(--input-border);
     border-radius: 6px;
     font-size: 16px;
@@ -103,6 +108,22 @@ body {
 .auth__toggle:hover {
     text-decoration: underline;
     color: var(--button-hover);
+}
+
+/* Eye Icon */
+.auth__toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 65%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    font-size: 18px;
+}
+
+/* Hover Effect */
+.auth__toggle-icon:hover {
+    color: #333;
 }
 
 /* CSS for contacts.html */

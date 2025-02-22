@@ -18,69 +18,11 @@
             <input type="text" id="name" class="form-control mb-2" placeholder="Name">
             <input type="email" id="email" class="form-control mb-2" placeholder="Email">
             <button class="btn btn-success" onclick="addContact()">Add Contact</button>
-            <button class="btn btn-primary" onclick="logout()">Logout</button>
+            <button class="btn btn-primary" onclick="doLogout()">Logout</button>
         </div>
         
         <ul id="contact-list" class="list-group mt-3"></ul>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", fetchContacts);
-        
-        function fetchContacts() {
-            fetch('api/getContacts.php')
-                .then(response => response.json())
-                .then(data => {
-                    let list = document.getElementById("contact-list");
-                    list.innerHTML = "";
-                    data.forEach(contact => {
-                        let li = document.createElement("li");
-                        li.className = "list-group-item d-flex justify-content-between align-items-center";
-                        li.innerHTML = `${contact.name} - ${contact.email} 
-                            <button class='btn btn-danger btn-sm' onclick='deleteContact(${contact.id})'>Delete</button>`;
-                        list.appendChild(li);
-                    });
-                })
-                .catch(error => console.error("Error fetching contacts:", error));
-        }
-
-        function addContact() {
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
-            
-            fetch('api/addContact.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email })
-            })
-            .then(response => response.json())
-            .then(() => {
-                fetchContacts();
-                document.getElementById("name").value = "";
-                document.getElementById("email").value = "";
-            })
-            .catch(error => console.error("Error adding contact:", error));
-        }
-
-        function deleteContact(id) {
-            fetch(`api/deleteContact.php?id=${id}`, { method: 'DELETE' })
-                .then(() => fetchContacts())
-                .catch(error => console.error("Error deleting contact:", error));
-        }
-
-        function searchContacts() {
-            let query = document.getElementById("search").value.toLowerCase();
-            let contacts = document.querySelectorAll("#contact-list li");
-            contacts.forEach(contact => {
-                contact.style.display = contact.textContent.toLowerCase().includes(query) ? "block" : "none";
-            });
-        }
-
-        function logout() {
-            fetch('api/logout.php')
-                .then(() => window.location.href = 'login.html')
-                .catch(error => console.error("Error logging out:", error));
-        }
-    </script>
+<script src="../javascript/script.js"></script>
 </body>
 </html>
