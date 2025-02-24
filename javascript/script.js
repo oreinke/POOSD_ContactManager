@@ -252,9 +252,22 @@ function addContact()
         {
             if (this.readyState == 4 && this.status == 200) 
             {
-                alert("Contact added successfully!");
-                searchContacts(); // Refresh contact list
-            }
+		let jsonObject = JSON.parse(xhr.responseText);
+		if (jsonObject.error && jsonObject.error.length > 0)
+		{
+			alert("Failed to add contact: " +jsonObject.error);
+		}
+		else
+		{
+			alert(jsonObject.message || "Contact addded successfully!");
+			// Clear input fields:
+			document.getElementByID("first_name").value = "";
+                    	document.getElementById("last_name").value  = "";
+                    	document.getElementById("email").value      = "";
+			// Refresh contact list
+			searchContacts();
+           	 }
+	    }
         };
         xhr.send(jsonPayload);
     }
