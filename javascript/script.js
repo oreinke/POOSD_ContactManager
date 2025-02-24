@@ -31,6 +31,8 @@ function doRegister()
 {
     let username = document.getElementById("register-username").value;
     let password = document.getElementById("register-password").value;
+    let email = document.getElementById("register-email").value;
+    let name = document.getElementById("register-name").value;
 
     let loginResult = document.getElementById("loginResult");
     if (loginResult) {
@@ -39,8 +41,9 @@ function doRegister()
         console.error("Element with ID 'loginResult' not found in DOM.");
     }
 
-    let tmp = { username: username, password: password };
+    let tmp = { name: name, email: email, username: username, password: password };
     let jsonPayload = JSON.stringify(tmp);
+
 
     let url = urlBase + '/Register.php';
 
@@ -63,13 +66,14 @@ function doRegister()
 
                     if (jsonObject.error.length > 0) 
                     {
+                        alert("Registration failed: " + jsonObject.error);      // Popup stating the reason for failure
                         document.getElementById("loginResult").innerHTML = jsonObject.error;
                         return;
                     }
 
                     alert("Registration successful! Please log in.");
                     
-                    // Switch to login form instead of redirecting
+                    // Switch to login form
                     document.getElementById("register-form").style.display = "none";
                     document.getElementById("login-form").style.display = "block";
                     document.getElementById("auth-title").innerText = "Login";
@@ -80,6 +84,7 @@ function doRegister()
         };
 
         xhr.send(jsonPayload);
+        window.location.href = "index.html";
     }
     catch(err)
     {
@@ -228,9 +233,9 @@ function doLogout()
 // 🔹 Add Contact
 function addContact()
 {
-    let firstName = document.getElementById("contactFirstName").value;
-    let lastName = document.getElementById("contactLastName").value;
-    let email = document.getElementById("contactEmail").value;
+    let firstName = document.getElementById("first_name").value;
+    let lastName = document.getElementById("last_name").value;
+    let email = document.getElementById("email").value;
     
     let tmp = { userId: userId, first_name: firstName, last_name: lastName, email: email };
     let jsonPayload = JSON.stringify(tmp);
