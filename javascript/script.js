@@ -281,32 +281,46 @@ function addContact()
 function searchContacts()
 {
     let srch = document.getElementById("search").value;
-    let tmp = { search: srch, userId: userId };
-    let jsonPayload = JSON.stringify(tmp);
+    let payload = { search: srch, userId: userId };
+    fetch(urlBase + '/SearchContacts.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        let contactList = document.getElementById("contact-list");
+        contactList.innerHTML = "";
+        
+        if (data.error && data.error.length > 0) 
+	{
+    //let tmp = { search: srch, userId: userId };
+    //let jsonPayload = JSON.stringify(tmp);
+    //let url = urlBase + '/SearchContacts.php';
     
-    let url = urlBase + '/SearchContacts.php';
-    
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    
-    try
-    {
-        xhr.onreadystatechange = function() 
-        {
-            if (this.readyState == 4 && this.status == 200) 
-            {
-                let jsonObject = JSON.parse(xhr.responseText);
-                let contactList = document.getElementById("contact-list");
-                contactList.innerHTML = "";
+    //let xhr = new XMLHttpRequest();
+    //xhr.open("POST", url, true);
+    //xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+   
+    //try
+   // {
+        //xhr.onreadystatechange = function() 
+        //{
+            //if (this.readyState == 4 && this.status == 200) 
+            //{
+                //let jsonObject = JSON.parse(xhr.responseText);
+             contactList = document.getElementById("contact-list");
+             contactList.innerHTML = "No contacts found.";
+	     return;
+	}
 
-                if (jsonObject.results.length == 0) 
+                /*if (jsonObject.results.length == 0) 
                 {
                     contactList.innerHTML = "No contacts found.";
                     return;
-                }
+                }*/
 
-                jsonObject.results.forEach(contact => {
+                 data.results.forEach(contact => {
                     let entry = document.createElement("li");
 	            entry.className = "list-group-item";
                     entry.innerHTML = `
@@ -316,14 +330,15 @@ function searchContacts()
                     `;
                     contactList.appendChild(entry);
                 });
-            }
-        };
-        xhr.send(jsonPayload);
-    }
-    catch(err)
-    {
-        alert(err.message);
-    }
+            //}
+    	)};
+        //xhr.send(jsonPayload);
+    })
+    //catch(err)
+    //{
+        //alert(err.message);
+    //}
+	.catch(error => console.error("Error searching contacts:", error));
 }
 
 // 🔹 Delete Contact
