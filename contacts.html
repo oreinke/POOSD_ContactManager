@@ -28,7 +28,7 @@
         document.addEventListener("DOMContentLoaded", fetchContacts);
         
         function fetchContacts() {
-	    let payload = { search: "", userID: userID };
+	    let payload = { search: "", userId: userId };
             fetch('API/SearchContacts.php')
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
