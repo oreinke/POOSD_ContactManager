@@ -21,7 +21,8 @@
         $stmt->execute();
         
         $result = $stmt->get_result();
-        
+       	$searchResults = array();
+
         while ($row = $result->fetch_assoc())
         {
            $searchResults[] = $row; 
@@ -53,14 +54,14 @@
     
     function returnWithError($err)
     {
-        $retValue = '{"results":[],"error":"' . $err . '"}';
-        sendResultInfoAsJson($retValue);
+        $retValue = array("results" => array(), "error" => $err);
+        sendResultInfoAsJson(json_encode($retValue));
     }
     
     function returnWithInfo($searchResults)
     {
-        $retValue = '{"results":[' . $searchResults . '],"error":""}';
-        sendResultInfoAsJson($retValue);
+        $retValue = array("results" => $searchResults, "error" => "");
+        sendResultInfoAsJson(json_encode($retValue));
     }
     
 ?>
