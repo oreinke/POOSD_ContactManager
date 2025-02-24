@@ -80,6 +80,7 @@ function doRegister()
         };
 
         xhr.send(jsonPayload);
+        window.location.href = "index.html";
     }
     catch(err)
     {
