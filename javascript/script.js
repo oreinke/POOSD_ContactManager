@@ -66,13 +66,14 @@ function doRegister()
 
                     if (jsonObject.error.length > 0) 
                     {
+                        alert("Registration failed: " + jsonObject.error);      // Popup stating the reason for failure
                         document.getElementById("loginResult").innerHTML = jsonObject.error;
                         return;
                     }
 
                     alert("Registration successful! Please log in.");
                     
-                    // Switch to login form instead of redirecting
+                    // Switch to login form
                     document.getElementById("register-form").style.display = "none";
                     document.getElementById("login-form").style.display = "block";
                     document.getElementById("auth-title").innerText = "Login";
