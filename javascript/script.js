@@ -262,7 +262,7 @@ function addContact()
 // 🔹 Search Contacts
 function searchContacts()
 {
-    let srch = document.getElementById("searchText").value;
+    let srch = document.getElementById("search").value;
     let tmp = { search: srch, userId: userId };
     let jsonPayload = JSON.stringify(tmp);
     
@@ -279,7 +279,7 @@ function searchContacts()
             if (this.readyState == 4 && this.status == 200) 
             {
                 let jsonObject = JSON.parse(xhr.responseText);
-                let contactList = document.getElementById("contactList");
+                let contactList = document.getElementById("contact-list");
                 contactList.innerHTML = "";
 
                 if (jsonObject.results.length == 0) 
@@ -289,11 +289,12 @@ function searchContacts()
                 }
 
                 jsonObject.results.forEach(contact => {
-                    let entry = document.createElement("div");
+                    let entry = document.createElement("li");
+	            entry.className = "list-group-item";
                     entry.innerHTML = `
                         <p>${contact.first_name} ${contact.last_name} - ${contact.email}</p>
-                        <button onclick="deleteContact(${contact.id})">Delete</button>
-                        <button onclick="editContact(${contact.id}, '${contact.first_name}', '${contact.last_name}', '${contact.email}')">Edit</button>
+                        <button onclick="deleteContact(${contact.id})" class="btn btn-danger btn-sm">Delete</button>
+                        <button onclick="editContact(${contact.id}, '${contact.first_name}', '${contact.last_name}', '${contact.email}')" class="btn btn-primary btn-sm">Edit</button>
                     `;
                     contactList.appendChild(entry);
                 });
