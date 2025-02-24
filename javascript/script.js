@@ -232,9 +232,9 @@ function doLogout()
 // 🔹 Add Contact
 function addContact()
 {
-    let firstName = document.getElementById("contactFirstName").value;
-    let lastName = document.getElementById("contactLastName").value;
-    let email = document.getElementById("contactEmail").value;
+    let firstName = document.getElementById("first_name").value;
+    let lastName = document.getElementById("last_name").value;
+    let email = document.getElementById("email").value;
     
     let tmp = { userId: userId, first_name: firstName, last_name: lastName, email: email };
     let jsonPayload = JSON.stringify(tmp);
