@@ -29,8 +29,8 @@ function toggleAuth() {
 
 function doRegister()
 {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    let username = document.getElementById("register-username").value;
+    let password = document.getElementById("register-password").value;
 
     let loginResult = document.getElementById("loginResult");
     if (loginResult) {
@@ -96,8 +96,8 @@ function doLogin()
     first_name = "";
     last_name = "";
 
-    let login = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    let login = document.getElementById("login-username").value;
+    let password = document.getElementById("login-password").value;
 
     let loginResult = document.getElementById("loginResult");
     if (loginResult) {
