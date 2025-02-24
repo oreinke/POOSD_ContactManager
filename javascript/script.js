@@ -67,7 +67,7 @@ function doRegister()
                     if (jsonObject.error.length > 0) 
                     {
                         alert("Registration failed: " + jsonObject.error);      // Popup stating the reason for failure
-                        document.getElementById("loginResult").innerHTML = jsonObject.error;
+                        // document.getElementById("loginResult").innerHTML = jsonObject.error;
                         return;
                     }
 
