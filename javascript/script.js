@@ -31,6 +31,8 @@ function doRegister()
 {
     let username = document.getElementById("register-username").value;
     let password = document.getElementById("register-password").value;
+    let email = document.getElementById("register-email").value;
+    let name = document.getElementById("register-name").value;
 
     let loginResult = document.getElementById("loginResult");
     if (loginResult) {
@@ -39,8 +41,9 @@ function doRegister()
         console.error("Element with ID 'loginResult' not found in DOM.");
     }
 
-    let tmp = { username: username, password: password };
+    let tmp = { name: name, email: email, username: username, password: password };
     let jsonPayload = JSON.stringify(tmp);
+
 
     let url = urlBase + '/Register.php';
 
