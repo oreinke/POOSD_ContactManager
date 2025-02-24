@@ -261,7 +261,7 @@ function addContact()
 		{
 			alert(jsonObject.message || "Contact addded successfully!");
 			// Clear input fields:
-			document.getElementByID("first_name").value = "";
+			document.getElementById("first_name").value = "";
                     	document.getElementById("last_name").value  = "";
                     	document.getElementById("email").value      = "";
 			// Refresh contact list
