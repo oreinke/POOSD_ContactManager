@@ -42,7 +42,7 @@
             contacts.forEach(contact => {
                 let li = document.createElement("li");
                 li.className = "list-group-item d-flex justify-content-between align-items-center";
-                li.innerHTML = `${contact.name} - ${contact.email} 
+				li.innerHTML = `${contact.first_name} ${contact.last_name} - ${contact.email} 
                     <button class='btn btn-danger btn-sm' onclick='deleteContact(${contact.id})'>Delete</button>`;
                 list.appendChild(li);
             });
@@ -60,18 +60,20 @@
         }
 
         function addContact() {
-            let name = document.getElementById("name").value;
+            let first_name = document.getElementById("first_name").value;
+  	    let last_name  = document.getElementById("last_name").value; 
             let email = document.getElementById("email").value;
             
             fetch('api/addContact.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email })
+                body: JSON.stringify({ first_name, last_name, email })
             })
             .then(response => response.json())
             .then(() => {
                 fetchContacts();
-                document.getElementById("name").value = "";
+                document.getElementById("first_name").value = "";
+      		document.getElementById("last_name").value  = ""; 
                 document.getElementById("email").value = "";
             })
             .catch(error => console.error("Error adding contact:", error));
