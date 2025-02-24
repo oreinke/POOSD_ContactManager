@@ -30,7 +30,7 @@ else
     $stmt->close();
 
     // Insert new user
-    $stmt = $conn->prepare("INSERT INTO users (username, password, name, email) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (username, password, name, email) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $inData["username"], $inData["password"],  $inData["name"], $inData["email"]);
     
     if ($stmt->execute()) 
