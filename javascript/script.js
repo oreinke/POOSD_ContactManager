@@ -266,7 +266,7 @@ function addContact()
 // 🔹 Search Contacts
 function searchContacts()
 {
-    let srch = document.getElementById("searchText").value;
+    let srch = document.getElementById("search").value;
     let tmp = { search: srch, userId: userId };
     let jsonPayload = JSON.stringify(tmp);
     
