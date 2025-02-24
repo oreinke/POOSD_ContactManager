@@ -11,7 +11,7 @@
     else
     {
         $stmt = $conn->prepare("INSERT INTO contacts (userid, first_name, last_name, email) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("isss", $inData["userid"], $inData["first_name"], $inData["last_name"], $inData["email"]);
+        $stmt->bind_param("isss", $inData["userId"], $inData["first_name"], $inData["last_name"], $inData["email"]);
         
         if ($stmt->execute()) 
         {
