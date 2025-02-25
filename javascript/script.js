@@ -181,7 +181,7 @@ function togglePasswordVisibility() {
     });
 }
 
-function saveCookie(userId, name)
+function saveCookie()
 {
     let minutes = 20;
     let date = new Date();
@@ -189,8 +189,9 @@ function saveCookie(userId, name)
 
     /*document.cookie = "first_name=" + first_name + ";expires=" + date.toGMTString() + ";path=/";
     document.cookie = "last_name=" + last_name + ";expires=" + date.toGMTString() + ";path=/";*/
-    document.cookie = "name=" + name + ";expires=" + date.toGMTString() + ";path=/";
-    document.cookie = "userId=" + userId + ";expires=" + date.toGMTString() + ";path=/";
+    document.cookie = "userId=" + userId + ",name=" + name + ";expires=" + date.toGMTString();
+    //document.cookie = "name=" + name + ";expires=" + date.toGMTString() + ";path=/";
+    //document.cookie = "userId=" + userId + ";expires=" + date.toGMTString() + ";path=/";
 }
 
 
