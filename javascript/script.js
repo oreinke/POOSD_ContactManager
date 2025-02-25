@@ -135,14 +135,21 @@ function doLogin()
 		    let jsonObject = JSON.parse(xhr.responseText);
 		    console.log("Parsed JSON:", jsonObject); // ✅ Debug parsed data
 
-		    if (jsonObject.error.length > 0) 
+		    if (jsonObject.error && jsonObject.error.length > 0) 
 		    {
 			console.error("Login Error:", jsonObject.error); //Debug
 			document.getElementById("loginResult").innerHTML = jsonObject.error;
 			return;
 		    }
 
-		    userId = jsonObject.id;
+		    if (jsonObject.id && jsonObject.id > 0) {
+                        userId = jsonObject.id;
+                    } else {
+                        console.error("Invalid user ID returned from server.");
+                        document.getElementById("loginResult").innerHTML = "Login failed. Invalid user ID.";
+                        return;
+                    }
+			
 		    if (jsonObject.name) {
 		        name = jsonObject.name;
 		    } else {
