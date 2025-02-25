@@ -21,10 +21,11 @@ if ($conn->connect_error) {
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()) {
-	    $id = $row['id'];
+	    /*$id = $row['id'];
 	    $first_name = $row['name'];
-	    $last_name = "";
-	    returnWithInfo($id, $first_name, $last_name);
+	    $last_name = ""; 
+	    returnWithInfo($id, $first_name, $last_name); */
+	    returnWithInfo($row['id'], $row['name']);
     } else {
         returnWithError("No Records Found");
     }
@@ -43,12 +44,14 @@ function sendResultInfoAsJson($obj) {
     }
 
 function returnWithError($err) {
-	$retValue = '{"id":0, "first_name":"","last_name":"","error":"' . $err .'"}';
+	//$retValue = '{"id":0, "first_name":"","last_name":"","error":"' . $err .'"}';
+	$retValue = '{"id":0,"name":"","error":"' . $err . '"}';
     	sendResultInfoAsJson($retValue);
 }
 
 function returnWithInfo($id, $first_name, $last_name) {
-    $retValue = '{"id":' . $id . ',"first_name":"' . $first_name . '","last_name":"' . $last_name . '","error":""}';
+	//$retValue = '{"id":' . $id . ',"first_name":"' . $first_name . '","last_name":"' . $last_name . '","error":""}';
+	$retValue = '{"id":' . $id . ',"name":"' $name . '","error":""}';;
     sendResultInfoAsJson($retValue);
 }
 
