@@ -1,6 +1,11 @@
 <?php
 
     $inData = getRequestInfo();
+    // ✅ Check if userId is missing or invalid before proceeding
+    if (!isset($inData["userId"]) || empty($inData["userId"])) {
+        returnWithError("Missing user ID");
+        exit();  // Stop further execution
+    }
 
     $conn = new mysqli("localhost", "dba", "dbapass", "contact_manager");
     
