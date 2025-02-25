@@ -22,7 +22,6 @@ if ($conn->connect_error) {
 
     if ($row = $result->fetch_assoc()) {
 	    $id = $row['id'];
-	    returnWithInfo ($row['id']);
 	    $first_name = $row['name'];
 	    $last_name = "";
 	    returnWithInfo($id, $first_name, $last_name);
