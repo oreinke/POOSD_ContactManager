@@ -4,6 +4,7 @@ const extension = 'php';
 let userId = 0;
 let first_name = "";
 let last_name = "";
+let name = "";
 
 function toggleAuth() {
     const loginForm = document.getElementById("login-form");
@@ -32,7 +33,7 @@ function doRegister()
     let username = document.getElementById("register-username").value;
     let password = document.getElementById("register-password").value;
     let email = document.getElementById("register-email").value;
-    if (email.indexOf('@') === -1) {
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     alert("Please enter a valid email address (e.g., user@example.com).");
     return;  // Stop further processing
     }
@@ -104,7 +105,7 @@ function doLogin()
     userId = 0;
     /*first_name = "";
     last_name = "";*/
-    let name = "";
+    name = "";
 
     let login = document.getElementById("login-username").value;
     let password = document.getElementById("login-password").value;
@@ -224,7 +225,7 @@ function readCookie()
         let tokens = thisOne.split("=");
         if (tokens[0] == "name") 
         {
-            //name = tokens[1];
+            name = tokens[1];
         }
         else if (tokens[0] == "userId") 
         {
@@ -236,6 +237,8 @@ function readCookie()
     {
         window.location.href = "index.html";
     } else {
+	// Show Welcome name
+	document.getElementById("welcomeUser").innerText = "Welcome " + name;
 	searchContacts();
     }
 }
@@ -255,7 +258,7 @@ function addContact()
     let firstName = document.getElementById("first_name").value;
     let lastName = document.getElementById("last_name").value;
     let email = document.getElementById("email").value;
-    if (email.indexOf('@') === -1) {
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     alert("Please enter a valid email address for the contact (e.g., contact@example.com).");
     return;  // Do not send the request
     }
