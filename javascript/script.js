@@ -137,6 +137,7 @@ function doLogin()
 
 		    if (jsonObject.error.length > 0) 
 		    {
+			console.error("Login Error:", jsonObject.error); //Debug
 			document.getElementById("loginResult").innerHTML = jsonObject.error;
 			return;
 		    }
@@ -145,6 +146,7 @@ function doLogin()
 		    /*first_name = jsonObject.first_name;
 		    last_name = jsonObject.last_name;*/
 		    name = jsonObject.name;
+		    console.log("Login Successful: userId =", userId, "name =", name);
 
 		    saveCookie();
 		    window.location.href = "contacts.html";
@@ -156,7 +158,8 @@ function doLogin()
     }
     catch(err)
     {
-      if (loginResult) {
+      	console.error("Login Request Failed:", err); //Debug
+	if (loginResult) {
             loginResult.innerHTML = err.message;
         }
     }
