@@ -278,10 +278,10 @@ function addContact()
 }
 
 // 🔹 Search Contacts
-function searchContacts()
-{
-    let srch = document.getElementById("search").value;
-    let payload = { search: srch, userId: userId };
+function searchContacts() {
+    let srch = document.getElementById("search").value.trim(); // Get search input
+    let payload = { search: srch, userId: userId }; // Prepare payload
+
     fetch(urlBase + '/SearchContacts.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -290,56 +290,31 @@ function searchContacts()
     .then(response => response.json())
     .then(data => {
         let contactList = document.getElementById("contact-list");
-        contactList.innerHTML = "";
-        
-        if (data.error && data.error.length > 0) 
-	{
-    //let tmp = { search: srch, userId: userId };
-    //let jsonPayload = JSON.stringify(tmp);
-    //let url = urlBase + '/SearchContacts.php';
-    
-    //let xhr = new XMLHttpRequest();
-    //xhr.open("POST", url, true);
-    //xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-   
-    //try
-   // {
-        //xhr.onreadystatechange = function() 
-        //{
-            //if (this.readyState == 4 && this.status == 200) 
-            //{
-                //let jsonObject = JSON.parse(xhr.responseText);
-             contactList = document.getElementById("contact-list");
-             contactList.innerHTML = "No contacts found.";
-	     return;
-	}
+        contactList.innerHTML = ""; // Clear previous results
 
-                /*if (jsonObject.results.length == 0) 
-                {
-                    contactList.innerHTML = "No contacts found.";
-                    return;
-                }*/
+        // 🔹 Handle No Results
+        if (!data.results || data.results.length === 0) {
+            contactList.innerHTML = `<li class="list-group-item text-muted">No contacts found.</li>`;
+            return;
+        }
 
-                 data.results.forEach(contact => {
-                    let entry = document.createElement("li");
-	            entry.className = "list-group-item";
-                    entry.innerHTML = `
-                        <p>${contact.first_name} ${contact.last_name} - ${contact.email}</p>
-                        <button onclick="deleteContact(${contact.id})" class="btn btn-danger btn-sm">Delete</button>
-                        <button onclick="editContact(${contact.id}, '${contact.first_name}', '${contact.last_name}', '${contact.email}')" class="btn btn-primary btn-sm">Edit</button>
-                    `;
-                    contactList.appendChild(entry);
-                });
-            //}
-    	)};
-        //xhr.send(jsonPayload);
+        // 🔹 Display Results
+        data.results.forEach(contact => {
+            let entry = document.createElement("li");
+            entry.className = "list-group-item d-flex justify-content-between align-items-center";
+            entry.innerHTML = `
+                <span>${contact.first_name} ${contact.last_name} - ${contact.email}</span>
+                <div>
+                    <button onclick="editContact(${contact.id}, '${contact.first_name}', '${contact.last_name}', '${contact.email}')" class="btn btn-primary btn-sm">Edit</button>
+                    <button onclick="deleteContact(${contact.id})" class="btn btn-danger btn-sm">Delete</button>
+                </div>
+            `;
+            contactList.appendChild(entry);
+        });
     })
-    //catch(err)
-    //{
-        //alert(err.message);
-    //}
-	.catch(error => console.error("Error searching contacts:", error));
+    .catch(error => console.error("Error searching contacts:", error));
 }
+
 
 // 🔹 Delete Contact
 function deleteContact(contactId)
