@@ -27,7 +27,7 @@
            $searchResults[] = $row; 
         }
         
-        if (count($searhResults) == 0)
+        if (count($searchResults) == 0)
         {
             returnWithError("No Records Found");
         }
