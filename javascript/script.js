@@ -143,17 +143,21 @@ function doLogin()
 		    }
 
 		    userId = jsonObject.id;
+		    if (jsonObject.name) {
+		        name = jsonObject.name;
+		    } else {
+		        console.error("Name not returned from server.");
+		        name = ""; // Ensure name is at least an empty string
+		    }
 		    /*first_name = jsonObject.first_name;
 		    last_name = jsonObject.last_name;*/
-		    name = jsonObject.name;
 		    console.log("Login Successful: userId =", userId, "name =", name);
 
 		    saveCookie();
 		    window.location.href = "contacts.html";
-		}
+	    	}
 	    }
 	};
-
         xhr.send(jsonPayload);
     }
     catch(err)
@@ -192,9 +196,8 @@ function saveCookie()
 
     /*document.cookie = "first_name=" + first_name + ";expires=" + date.toGMTString() + ";path=/";
     document.cookie = "last_name=" + last_name + ";expires=" + date.toGMTString() + ";path=/";*/
-    document.cookie = "userId=" + userId + ",name=" + name + ";expires=" + date.toGMTString();
-    //document.cookie = "name=" + name + ";expires=" + date.toGMTString() + ";path=/";
-    //document.cookie = "userId=" + userId + ";expires=" + date.toGMTString() + ";path=/";
+    document.cookie = "name=" + name + ";expires=" + date.toGMTString() + ";path=/";
+    document.cookie = "userId=" + userId + ";expires=" + date.toGMTString() + ";path=/";
 }
 
 
@@ -210,11 +213,7 @@ function readCookie()
         let tokens = thisOne.split("=");
         if (tokens[0] == "first_name") 
         {
-            first_name = tokens[1];
-        }
-        else if (tokens[0] == "last_name") 
-        {
-            last_name = tokens[1];
+            name = tokens[1];
         }
         else if (tokens[0] == "userId") 
         {
@@ -388,5 +387,4 @@ function editContact(contactId, firstName, lastName, email)
         alert(err.message);
     }
 }
-
 document.addEventListener("DOMContentLoaded", togglePasswordVisibility);
