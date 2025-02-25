@@ -4,6 +4,7 @@ const extension = 'php';
 let userId = 0;
 let first_name = "";
 let last_name = "";
+let name = "";
 
 function toggleAuth() {
     const loginForm = document.getElementById("login-form");
@@ -104,7 +105,7 @@ function doLogin()
     userId = 0;
     /*first_name = "";
     last_name = "";*/
-    let name = "";
+    //let name = "";
 
     let login = document.getElementById("login-username").value;
     let password = document.getElementById("login-password").value;
@@ -224,7 +225,7 @@ function readCookie()
         let tokens = thisOne.split("=");
         if (tokens[0] == "name") 
         {
-            //name = tokens[1];
+            name = tokens[1];
         }
         else if (tokens[0] == "userId") 
         {
@@ -236,6 +237,8 @@ function readCookie()
     {
         window.location.href = "index.html";
     } else {
+	// Show Welcome name
+	document.getElementById("welcomeUser").innerText = "Welcome " + name;
 	searchContacts();
     }
 }
