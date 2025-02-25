@@ -105,7 +105,7 @@ function doLogin()
     userId = 0;
     /*first_name = "";
     last_name = "";*/
-    let name = "";
+    name = "";
 
     let login = document.getElementById("login-username").value;
     let password = document.getElementById("login-password").value;
