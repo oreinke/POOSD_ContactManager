@@ -212,15 +212,15 @@ function readCookie()
 {
     userId = -1;
     let data = document.cookie;
-    let splits = data.split(",");
+    let splits = data.split(";");
 
     for (var i = 0; i < splits.length; i++) 
     {
         let thisOne = splits[i].trim();
         let tokens = thisOne.split("=");
-        if (tokens[0] == "first_name") 
+        if (tokens[0] == "name") 
         {
-            name = tokens[1];
+            //name = tokens[1];
         }
         else if (tokens[0] == "userId") 
         {
