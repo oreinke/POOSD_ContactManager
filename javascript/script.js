@@ -255,6 +255,10 @@ function addContact()
     let firstName = document.getElementById("first_name").value;
     let lastName = document.getElementById("last_name").value;
     let email = document.getElementById("email").value;
+    if (email.indexOf('@') === -1) {
+    alert("Please enter a valid email address for the contact (e.g., contact@example.com).");
+    return;  // Do not send the request
+    }
     
     let tmp = { userId: userId, first_name: firstName, last_name: lastName, email: email };
     let jsonPayload = JSON.stringify(tmp);
