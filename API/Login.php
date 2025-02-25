@@ -15,7 +15,7 @@ if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     // Fix SQL query for user authentication
-    $stmt = $conn->prepare("SELECT id, name FROM users WHERE username=? AND password=?");
+    $stmt = $conn->prepare("SELECT id, name, password  FROM users WHERE username=? AND password=?");
     $stmt->bind_param("ss", $inData["username"], $inData["password"]);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -27,7 +27,7 @@ if ($conn->connect_error) {
 	    returnWithInfo($id, $first_name, $last_name); */
 	    returnWithInfo($row['id'], $row['name']);
     } else {
-        returnWithError("No Records Found");
+        returnWithError("Incorrect Username or Password");
     }
 
     $stmt->close();
@@ -51,7 +51,7 @@ function returnWithError($err) {
 
 function returnWithInfo($id, $first_name, $last_name) {
 	//$retValue = '{"id":' . $id . ',"first_name":"' . $first_name . '","last_name":"' . $last_name . '","error":""}';
-	$retValue = '{"id":' . $id . ',"name":"' $name . '","error":""}';;
+	$retValue = '{"id":' . $id . ',"name":"' . $name . '","error":""}';;
     sendResultInfoAsJson($retValue);
 }
 
