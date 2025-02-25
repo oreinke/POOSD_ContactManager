@@ -32,6 +32,10 @@ function doRegister()
     let username = document.getElementById("register-username").value;
     let password = document.getElementById("register-password").value;
     let email = document.getElementById("register-email").value;
+    if (email.indexOf('@') === -1) {
+    alert("Please enter a valid email address (e.g., user@example.com).");
+    return;  // Stop further processing
+    }
     let name = document.getElementById("register-name").value;
 
     let loginResult = document.getElementById("loginResult");
