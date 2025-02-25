@@ -238,7 +238,7 @@ function readCookie()
         window.location.href = "index.html";
     } else {
 	// Show Welcome name
-	document.getElementById("welcomeUser").innerText = "Welcome " + name;
+	document.getElementById("welcomeUser").innerText = "Welcome " + decodeURIComponent(name);
 	searchContacts();
     }
 }
