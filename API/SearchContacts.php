@@ -12,10 +12,9 @@
     } 
     else
     {
-        $stmt = $conn->prepare("SELECT id, first_name, last_name, email FROM contacts 
-                                WHERE (first_name LIKE ? OR last_name LIKE ? OR email LIKE ?) 
-                                AND userid = ?");
-        
+        // Return ALL contacts for that user
+	    $stmt = $conn->prepare("SELECT id, first_name, last_name, email FROM contacts WHERE (first_name LIKE ? OR last_name LIKE ? OR email LIKE ?) AND  userid = ?");
+
         $searchTerm = "%" . $inData["search"] . "%";
         $stmt->bind_param("sssi", $searchTerm, $searchTerm, $searchTerm, $inData["userId"]);
         $stmt->execute();
@@ -28,7 +27,7 @@
            $searchResults[] = $row; 
         }
         
-        if ($searchCount == 0)
+        if (count($searhResults) == 0)
         {
             returnWithError("No Records Found");
         }
@@ -54,14 +53,16 @@
     
     function returnWithError($err)
     {
-        $retValue = array("results" => array(), "error" => $err);
-        sendResultInfoAsJson(json_encode($retValue));
+        //$retValue = array("results" => array(), "error" => $err);
+	//sendResultInfoAsJson(json_encode($retValue));
+	sendResultInfoAsJson(["results" => [], "error" => $err]);
     }
     
     function returnWithInfo($searchResults)
     {
-        $retValue = array("results" => $searchResults, "error" => "");
-        sendResultInfoAsJson(json_encode($retValue));
+        //$retValue = array("results" => $searchResults, "error" => "");
+	//sendResultInfoAsJson(json_encode($retValue));
+	sendResultInfoAsJson(["results" => $searchResults, "error" => ""]);
     }
     
 ?>
