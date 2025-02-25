@@ -98,8 +98,9 @@ function doRegister()
 function doLogin()
 {
     userId = 0;
-    first_name = "";
-    last_name = "";
+    /*first_name = "";
+    last_name = "";*/
+    let name = "";
 
     let login = document.getElementById("login-username").value;
     let password = document.getElementById("login-password").value;
@@ -141,8 +142,9 @@ function doLogin()
 		    }
 
 		    userId = jsonObject.id;
-		    first_name = jsonObject.first_name;
-		    last_name = jsonObject.last_name;
+		    /*first_name = jsonObject.first_name;
+		    last_name = jsonObject.last_name;*/
+		    name = jsonObject.name;
 
 		    saveCookie();
 		    window.location.href = "contacts.html";
