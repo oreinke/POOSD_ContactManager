@@ -32,7 +32,7 @@ function doRegister()
     let username = document.getElementById("register-username").value;
     let password = document.getElementById("register-password").value;
     let email = document.getElementById("register-email").value;
-    if (email.indexOf('@') === -1) {
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     alert("Please enter a valid email address (e.g., user@example.com).");
     return;  // Stop further processing
     }
@@ -255,7 +255,7 @@ function addContact()
     let firstName = document.getElementById("first_name").value;
     let lastName = document.getElementById("last_name").value;
     let email = document.getElementById("email").value;
-    if (email.indexOf('@') === -1) {
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     alert("Please enter a valid email address for the contact (e.g., contact@example.com).");
     return;  // Do not send the request
     }
