@@ -45,7 +45,7 @@ function doRegister()
     return;
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    registerResult.innerHTML = "Please enter a valid email address \n (e.g., name@example.com).";
+    registerResult.innerHTML = "Please enter a valid email address<br>(e.g., name@example.com).";
     return;  // Stop further processing
     }
 
@@ -282,7 +282,7 @@ function addContact()
     return; // Stop further processing
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    contactResult.innerHTML = "Please enter a valid email address (e.g., contact@example.com).";
+    contactResult.innerHTML = "Please enter a valid email address<br>(e.g., contact@example.com).";
     return;  // Do not send the request
     }
     
