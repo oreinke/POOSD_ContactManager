@@ -282,7 +282,7 @@ function addContact()
     return; // Stop further processing
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    contactResult.innerHTML = "Please enter a valid email address (e.g., contact@example.com).;
+    contactResult.innerHTML = "Please enter a valid email address (e.g., contact@example.com).";
     return;  // Do not send the request
     }
     
