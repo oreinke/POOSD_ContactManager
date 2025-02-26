@@ -11,9 +11,6 @@ function toggleAuth() {
     const registerForm = document.getElementById("register-form");
     const authTitle = document.getElementById("auth-title");
     const toggleText = document.getElementById("toggle-text");
-    if (!toggleText) {
-        return;
-    }
     const toggleTextPrefix = document.getElementById("toggle-text-prefix");
 
     let loginResult = document.getElementById("loginResult");
@@ -25,15 +22,31 @@ function toggleAuth() {
     if (loginForm.style.display === "none") {
         loginForm.style.display = "block";
         registerForm.style.display = "none";
-        authTitle.innerText = "Login";
+        /*authTitle.innerText = "Login";
         toggleTextPrefix.innerText = "Don't have an account?"
-        toggleText.innerText = "Register";
+        toggleText.innerText = "Register"; */
+	if (toggleTextPrefix) 
+        {
+            toggleTextPrefix.innerText = "Don't have an account?";
+        }
+        if (toggleText) 
+        {
+            toggleText.innerText = "Register";
+        }
     } else {
         loginForm.style.display = "none";
         registerForm.style.display = "block";
         authTitle.innerText = "Register";
-        toggleTextPrefix.innerText = "Already have an account?"
-        toggleText.innerText = "Login";
+        /*toggleTextPrefix.innerText = "Already have an account?"
+        toggleText.innerText = "Login"; */
+	if (toggleTextPrefix) 
+        {
+            toggleTextPrefix.innerText = "Already have an account?";
+        }
+        if (toggleText) 
+        {
+            toggleText.innerText = "Login";
+        }
     }
 }
 
