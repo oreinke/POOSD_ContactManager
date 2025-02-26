@@ -13,18 +13,40 @@ function toggleAuth() {
     const toggleText = document.getElementById("toggle-text");
     const toggleTextPrefix = document.getElementById("toggle-text-prefix");
 
+    let loginResult = document.getElementById("loginResult");
+    if (loginResult) 
+    {
+        loginResult.innerHTML = "";
+    }
+
     if (loginForm.style.display === "none") {
         loginForm.style.display = "block";
         registerForm.style.display = "none";
         authTitle.innerText = "Login";
-        toggleTextPrefix.innerText = "Don't have an account?"
-        toggleText.innerText = "Register";
+        /*toggleTextPrefix.innerText = "Don't have an account?"
+        toggleText.innerText = "Register"; */
+	if (toggleTextPrefix) 
+        {
+            toggleTextPrefix.innerText = "Don't have an account?";
+        }
+        /*if (toggleText) 
+        {
+            toggleText.innerText = "Register";
+        } */
     } else {
         loginForm.style.display = "none";
         registerForm.style.display = "block";
         authTitle.innerText = "Register";
-        toggleTextPrefix.innerText = "Already have an account?"
-        toggleText.innerText = "Login";
+        /*toggleTextPrefix.innerText = "Already have an account?"
+        toggleText.innerText = "Login"; */
+	if (toggleTextPrefix) 
+        {
+            toggleTextPrefix.innerText = "Already have an account?";
+        }
+        /*if (toggleText) 
+        {
+            toggleText.innerText = "Login";
+        } */
     }
 }
 
@@ -33,11 +55,15 @@ function doRegister()
     let username = document.getElementById("register-username").value;
     let password = document.getElementById("register-password").value;
     let email = document.getElementById("register-email").value;
+    let name = document.getElementById("register-name").value;
+    if (!username || !password || !email || !name) {
+    registerResult.innerHTML = "Please fill in all fields.";
+    return;
+    }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert("Please enter a valid email address (e.g., user@example.com).");
+    registerResult.innerHTML = "Please enter a valid email address<br>(e.g., name@example.com).";
     return;  // Stop further processing
     }
-    let name = document.getElementById("register-name").value;
 
     let loginResult = document.getElementById("loginResult");
     if (loginResult) {
@@ -69,16 +95,13 @@ function doRegister()
                     let jsonObject = JSON.parse(xhr.responseText);
                     console.log("Parsed JSON:", jsonObject); // ✅ Debug parsed data
 
-                    if (jsonObject.error.length > 0) 
+                    if (jsonObject.error && jsonObject.error.length > 0) 
                     {
-                        alert("Registration failed: " + jsonObject.error);      // Popup stating the reason for failure
                         document.getElementById("loginResult").innerHTML = jsonObject.error;
                         document.getElementById("loginResult").style.color = 'red';
                         return;
                     }
 
-                    alert("Registration successful! Please log in.");
-                    
                     // Switch to login form
                     document.getElementById("register-form").style.display = "none";
                     document.getElementById("login-form").style.display = "block";
@@ -86,14 +109,12 @@ function doRegister()
                     document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
                     document.getElementById("toggle-text").innerText = "Register";
 
-                    document.getElementById("loginResult").innerHTML = "Successfully registered";
-                    document.getElementById("loginResult").style.color = 'green';
+                    window.location.href = "index.html";
                 }
             }
         };
 
         xhr.send(jsonPayload);
-        window.location.href = "index.html";
     }
     catch(err)
     {
@@ -121,6 +142,13 @@ function doLogin()
     } else {
         console.error("Element with ID 'loginResult' not found in DOM.");
     }
+	
+    if (!login || !password)
+    {
+        loginResult.innerHTML = "Please fill in all fields.";
+        loginResult.style.color = "red"
+        return;
+    }
 
     let tmp = { username: login, password: password };
     let jsonPayload = JSON.stringify(tmp);
@@ -134,59 +162,59 @@ function doLogin()
     try
     {
         xhr.onreadystatechange = function() 
-	{
-	    if (this.readyState == 4) 
-	    {
-		
-		console.log("Response:", this.responseText);  // ✅ Debug log
+        {
+            if (this.readyState == 4) 
+            {
+            
+            console.log("Response:", this.responseText);  // ✅ Debug log
 
-		if (this.status == 200) 
-		{
-		    let jsonObject = JSON.parse(xhr.responseText);
-		    console.log("Parsed JSON:", jsonObject); // ✅ Debug parsed data
+            if (this.status == 200) 
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+                console.log("Parsed JSON:", jsonObject); // ✅ Debug parsed data
 
-		    if (jsonObject.error && jsonObject.error.length > 0) 
-		    {
-			console.error("Login Error:", jsonObject.error); //Debug
-			document.getElementById("loginResult").innerHTML = jsonObject.error;
-            document.getElementById("loginResult").style.color = 'red';
-			return;
-		    }
+                if (jsonObject.error && jsonObject.error.length > 0) 
+                {
+                console.error("Login Error:", jsonObject.error); //Debug
+                document.getElementById("loginResult").innerHTML = jsonObject.error;
+                document.getElementById("loginResult").style.color = 'red';
+                return;
+                }
 
-		    if (jsonObject.id && jsonObject.id > 0) {
-                        userId = jsonObject.id;
-                    } else {
-                        console.error("Invalid user ID returned from server.");
-                        document.getElementById("loginResult").innerHTML = "Login failed. Invalid user ID.";
-                        document.getElementById("loginResult").style.color = 'red';
-                        return;
-                    }
-			
-		    if (jsonObject.name) {
-		        name = jsonObject.name;
-		    } else {
-		        console.error("Name not returned from server.");
-		        name = ""; // Ensure name is at least an empty string
-		    }
-		    /*first_name = jsonObject.first_name;
-		    last_name = jsonObject.last_name;*/
-		    console.log("Login Successful: userId =", userId, "name =", name);
+                if (jsonObject.id && jsonObject.id > 0) {
+                    userId = jsonObject.id;
+                } else {
+                    console.error("Invalid user ID returned from server.");
+                    document.getElementById("loginResult").innerHTML = "Login failed. Invalid user ID.";
+                    document.getElementById("loginResult").style.color = 'red';
+                    return;
+                }
+                
+                if (jsonObject.name) {
+                    name = jsonObject.name;
+                } else {
+                    console.error("Name not returned from server.");
+                    name = ""; // Ensure name is at least an empty string
+                }
+                /*first_name = jsonObject.first_name;
+                last_name = jsonObject.last_name;*/
+                console.log("Login Successful: userId =", userId, "name =", name);
 
-		    saveCookie();
-		    window.location.href = "contacts.html";
-	    	}
-	    }
-	};
+                saveCookie();
+                window.location.href = "contacts.html";
+                }
+            }
+        };
         xhr.send(jsonPayload);
     }
     catch(err)
     {
       	console.error("Login Request Failed:", err); //Debug
-	if (loginResult) {
-            loginResult.innerHTML = err.message;
-            document.getElementById("loginResult").style.color = 'red';
+        if (loginResult) {
+                loginResult.innerHTML = err.message;
+                document.getElementById("loginResult").style.color = 'red';
+            }
         }
-    }
 }
 
 function togglePasswordVisibility() {
@@ -266,9 +294,17 @@ function addContact()
     let firstName = document.getElementById("first_name").value;
     let lastName = document.getElementById("last_name").value;
     let email = document.getElementById("email").value;
+    let contactResult = document.getElementById("contactResult");
+    if (!firstName || !lastName || !email)
+    {
+        contactResult.innerHTML = "Please fill in all fields.";
+        contactResult.style.color = "red"
+        
+        return; // Stop further processing
+    }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert("Please enter a valid email address for the contact (e.g., contact@example.com).");
-    return;  // Do not send the request
+        contactResult.innerHTML = "Please enter a valid email address<br>(e.g., contact@example.com).";
+        return;  // Do not send the request
     }
     
     let tmp = { userId: userId, first_name: firstName, last_name: lastName, email: email };
@@ -286,26 +322,27 @@ function addContact()
         {
             if (this.readyState == 4 && this.status == 200) 
             {
-		let jsonObject = JSON.parse(xhr.responseText);
-		if (jsonObject.error && jsonObject.error.length > 0)
-		{
-			document.getElementById("contactResult").innerHTML = jsonObject.error;
-            document.getElementById("contactResult").style.color = 'red';
-		}
-		else
-		{
-            // Update confirmation
-			document.getElementById("contactResult").innerHTML = "Successfully added " + firstName;
-            document.getElementById("contactResult").style.color = 'green';
+                let jsonObject = JSON.parse(xhr.responseText);
+                if (jsonObject.error && jsonObject.error.length > 0)
+                {
+                    document.getElementById("contactResult").innerHTML = jsonObject.error;
+                    document.getElementById("contactResult").style.color = 'red';
+                }
+                else
+                {
+                    // Update confirmation
+                    document.getElementById("contactResult").innerHTML = "Successfully added " + firstName;
+                    document.getElementById("contactResult").style.color = 'green';
 
-			// Clear input fields:
-			firstName.value = "";
-            lastName.value  = "";
-            email.value      = "";
-			// Refresh contact list
-			searchContacts();
-           	 }
-	    }
+                    // Clear input fields:
+                    firstName.value = "";
+                    lastName.value  = "";
+                    email.value      = "";
+                    
+                    // Refresh contact list
+                    searchContacts();
+                }
+            }
         };
         xhr.send(jsonPayload);
     }
