@@ -11,6 +11,9 @@ function toggleAuth() {
     const registerForm = document.getElementById("register-form");
     const authTitle = document.getElementById("auth-title");
     const toggleText = document.getElementById("toggle-text");
+    if (toggleText) {
+        toggleText.innerText = "Register";
+    }
     const toggleTextPrefix = document.getElementById("toggle-text-prefix");
 
     let loginResult = document.getElementById("loginResult");
