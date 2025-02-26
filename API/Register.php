@@ -2,11 +2,11 @@
 header('Access-Control-Allow-Origin: *');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+$inData = getRequestInfo();
 if (empty($inData["username"]) || empty($inData["password"]) || empty($inData["email"]) || empty($inData["name"])) {
     returnWithError("Missing entries. Please fill in all fields.");
     exit();
 }
-$inData = getRequestInfo();
 
 $conn = new mysqli("localhost", "dba", "dbapass", "contact_manager");
 
