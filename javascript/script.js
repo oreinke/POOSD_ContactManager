@@ -22,8 +22,8 @@ function toggleAuth() {
     if (loginForm.style.display === "none") {
         loginForm.style.display = "block";
         registerForm.style.display = "none";
-        /*authTitle.innerText = "Login";
-        toggleTextPrefix.innerText = "Don't have an account?"
+        authTitle.innerText = "Login";
+        /*toggleTextPrefix.innerText = "Don't have an account?"
         toggleText.innerText = "Register"; */
 	if (toggleTextPrefix) 
         {
