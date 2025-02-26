@@ -41,11 +41,11 @@ function doRegister()
     let email = document.getElementById("register-email").value;
     let name = document.getElementById("register-name").value;
     if (!username || !password || !email || !name) {
-    alert("Missing entries. Please fill in all fields.");
+    registerResult.innerHTML = "Please fill in all fields.";
     return;
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert("Please enter a valid email address (e.g., user@example.com).");
+    registerResult.innerHTML = "Please enter a valid email address (e.g., name@example.com).";
     return;  // Stop further processing
     }
 
@@ -278,11 +278,11 @@ function addContact()
     let email = document.getElementById("email").value;
     if (!firstName || !lastName || !email)
     {
-    alert("Missing entries. Please fill in all fields.");
+    contactResult.innerHTML = "Please fill in all fields.";
     return; // Stop further processing
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert("Please enter a valid email address for the contact (e.g., contact@example.com).");
+    contactResult.innerHTML = "Please enter a valid email address (e.g., contact@example.com).;
     return;  // Do not send the request
     }
     
