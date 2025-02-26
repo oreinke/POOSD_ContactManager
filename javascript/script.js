@@ -29,10 +29,10 @@ function toggleAuth() {
         {
             toggleTextPrefix.innerText = "Don't have an account?";
         }
-        if (toggleText) 
+        /*if (toggleText) 
         {
             toggleText.innerText = "Register";
-        }
+        } */
     } else {
         loginForm.style.display = "none";
         registerForm.style.display = "block";
@@ -43,10 +43,10 @@ function toggleAuth() {
         {
             toggleTextPrefix.innerText = "Already have an account?";
         }
-        if (toggleText) 
+        /*if (toggleText) 
         {
             toggleText.innerText = "Login";
-        }
+        } */
     }
 }
 
