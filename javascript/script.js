@@ -276,6 +276,7 @@ function addContact()
     let firstName = document.getElementById("first_name").value;
     let lastName = document.getElementById("last_name").value;
     let email = document.getElementById("email").value;
+    let contactResult = document.getElementById("contactResult");
     if (!firstName || !lastName || !email)
     {
     contactResult.innerHTML = "Please fill in all fields.";
@@ -304,11 +305,12 @@ function addContact()
 		let jsonObject = JSON.parse(xhr.responseText);
 		if (jsonObject.error && jsonObject.error.length > 0)
 		{
-			alert("Failed to add contact: " +jsonObject.error);
+			contactResult.innerHTML = "Failed to add contact: " +jsonObject.error;
 		}
 		else
 		{
-			alert(jsonObject.message || "Contact addded successfully!");
+			contactResult.innerHTML = "";
+			contactResult.innerHTML = jsonObject.message || "Contact addded successfully!";
 			// Clear input fields:
 			document.getElementById("first_name").value = "";
                     	document.getElementById("last_name").value  = "";
