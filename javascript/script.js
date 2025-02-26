@@ -87,8 +87,8 @@ function doRegister()
                     document.getElementById("register-form").style.display = "none";
                     document.getElementById("login-form").style.display = "block";
                     document.getElementById("auth-title").innerText = "Login";
-                    document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
-                    document.getElementById("toggle-text").innerText = "Register";
+                    //document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
+                    //document.getElementById("toggle-text").innerText = "Register";
 		    window.location.href = "index.html";
 		       }
                 }
