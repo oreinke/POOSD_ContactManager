@@ -45,7 +45,7 @@ function doRegister()
     return;
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    registerResult.innerHTML = "Please enter a valid email address (e.g., name@example.com).";
+    registerResult.innerHTML = "Please enter a valid email address \n (e.g., name@example.com).";
     return;  // Stop further processing
     }
 
