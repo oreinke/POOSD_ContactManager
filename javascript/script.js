@@ -88,12 +88,12 @@ function doRegister()
                     document.getElementById("auth-title").innerText = "Login";
                     document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
                     document.getElementById("toggle-text").innerText = "Register";
+		    window.location.href = "index.html";
                 }
             }
         };
 
         xhr.send(jsonPayload);
-        window.location.href = "index.html";
     }
     catch(err)
     {
