@@ -37,6 +37,10 @@ function doRegister()
     alert("Please enter a valid email address (e.g., user@example.com).");
     return;  // Stop further processing
     }
+    if (!username || !password || !email || !name) {
+    alert("Missing entries. Please fill in all fields.");
+    return;
+    }
     let name = document.getElementById("register-name").value;
 
     let loginResult = document.getElementById("loginResult");
