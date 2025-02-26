@@ -13,6 +13,12 @@ function toggleAuth() {
     const toggleText = document.getElementById("toggle-text");
     const toggleTextPrefix = document.getElementById("toggle-text-prefix");
 
+    let loginResult = document.getElementById("loginResult");
+    if (loginResult) 
+    {
+        loginResult.innerHTML = "";
+    }
+
     if (loginForm.style.display === "none") {
         loginForm.style.display = "block";
         registerForm.style.display = "none";
@@ -121,6 +127,12 @@ function doLogin()
         loginResult.innerHTML = "";
     } else {
         console.error("Element with ID 'loginResult' not found in DOM.");
+    }
+	
+    if (!login || !password)
+    {
+        loginResult.innerHTML = "Please fill in all fields.";
+        return;
     }
 
     let tmp = { username: login, password: password };
