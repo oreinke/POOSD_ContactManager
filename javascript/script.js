@@ -56,13 +56,16 @@ function doRegister()
     let password = document.getElementById("register-password").value;
     let email = document.getElementById("register-email").value;
     let name = document.getElementById("register-name").value;
+    let registerResult = document.getElementById("registerResult");
     if (!username || !password || !email || !name) {
-    registerResult.innerHTML = "Please fill in all fields.";
-    return;
+        registerResult.innerHTML = "Please fill in all fields.";
+        registerResult.style.color = "red";
+        return;
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    registerResult.innerHTML = "Please enter a valid email address<br>(e.g., name@example.com).";
-    return;  // Stop further processing
+        registerResult.innerHTML = "Please enter a valid email address<br>(e.g., name@example.com).";
+        registerResult.style.color = "red";
+        return;  // Stop further processing
     }
 
     let loginResult = document.getElementById("loginResult");
@@ -97,8 +100,8 @@ function doRegister()
 
                     if (jsonObject.error && jsonObject.error.length > 0) 
                     {
-                        document.getElementById("loginResult").innerHTML = jsonObject.error;
-                        document.getElementById("loginResult").style.color = 'red';
+                        document.getElementById("registerResult").innerHTML = jsonObject.error;
+                        document.getElementById("registerResult").style.color = 'red';
                         return;
                     }
 
@@ -108,7 +111,9 @@ function doRegister()
                     document.getElementById("auth-title").innerText = "Login";
                     document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
                     document.getElementById("toggle-text").innerText = "Register";
-
+                    
+                    loginResult.style.innerHTML = "Successful register";
+                    loginResult.style.color = "green";
                     window.location.href = "index.html";
                 }
             }
@@ -118,9 +123,9 @@ function doRegister()
     }
     catch(err)
     {
-       if (loginResult) {
-            loginResult.innerHTML = err.message;
-            document.getElementById("loginResult").style.color = 'red';
+       if (registerResult) {
+            registerResult.innerHTML = err.message;
+            registerResult.style.color = 'red';
         }
     }
 }
