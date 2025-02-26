@@ -73,6 +73,7 @@ function doRegister()
                     {
                         alert("Registration failed: " + jsonObject.error);      // Popup stating the reason for failure
                         document.getElementById("loginResult").innerHTML = jsonObject.error;
+                        document.getElementById("loginResult").style.color = 'red';
                         return;
                     }
 
@@ -84,6 +85,9 @@ function doRegister()
                     document.getElementById("auth-title").innerText = "Login";
                     document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
                     document.getElementById("toggle-text").innerText = "Register";
+
+                    document.getElementById("loginResult").innerHTML = "Successfully registered";
+                    document.getElementById("loginResult").style.color = 'green';
                 }
             }
         };
@@ -95,6 +99,7 @@ function doRegister()
     {
        if (loginResult) {
             loginResult.innerHTML = err.message;
+            document.getElementById("loginResult").style.color = 'red';
         }
     }
 }
@@ -144,6 +149,7 @@ function doLogin()
 		    {
 			console.error("Login Error:", jsonObject.error); //Debug
 			document.getElementById("loginResult").innerHTML = jsonObject.error;
+            document.getElementById("loginResult").style.color = 'red';
 			return;
 		    }
 
@@ -152,6 +158,7 @@ function doLogin()
                     } else {
                         console.error("Invalid user ID returned from server.");
                         document.getElementById("loginResult").innerHTML = "Login failed. Invalid user ID.";
+                        document.getElementById("loginResult").style.color = 'red';
                         return;
                     }
 			
@@ -177,6 +184,7 @@ function doLogin()
       	console.error("Login Request Failed:", err); //Debug
 	if (loginResult) {
             loginResult.innerHTML = err.message;
+            document.getElementById("loginResult").style.color = 'red';
         }
     }
 }
@@ -281,15 +289,19 @@ function addContact()
 		let jsonObject = JSON.parse(xhr.responseText);
 		if (jsonObject.error && jsonObject.error.length > 0)
 		{
-			alert("Failed to add contact: " +jsonObject.error);
+			document.getElementById("contactResult").innerHTML = jsonObject.error;
+            document.getElementById("contactResult").style.color = 'red';
 		}
 		else
 		{
-			alert(jsonObject.message || "Contact addded successfully!");
+            // Update confirmation
+			document.getElementById("contactResult").innerHTML = "Successfully added " + firstName;
+            document.getElementById("contactResult").style.color = 'green';
+
 			// Clear input fields:
-			document.getElementById("first_name").value = "";
-                    	document.getElementById("last_name").value  = "";
-                    	document.getElementById("email").value      = "";
+			firstName.value = "";
+            lastName.value  = "";
+            email.value      = "";
 			// Refresh contact list
 			searchContacts();
            	 }
@@ -299,7 +311,8 @@ function addContact()
     }
     catch(err)
     {
-        alert(err.message);
+        document.getElementById("contactResult").innerHTML = jsonObject.error;
+        document.getElementById("contactResult").style.color = 'red';
     }
 }
 
@@ -360,7 +373,8 @@ function deleteContact(contactId)
         {
             if (this.readyState == 4 && this.status == 200) 
             {
-                alert("Contact deleted successfully!");
+                document.getElementById("contactResult").innerHTML = "Contact deleted successfully";
+                document.getElementById("contactResult").style.color = 'green';
                 searchContacts(); // Refresh contact list
             }
         };
@@ -368,7 +382,8 @@ function deleteContact(contactId)
     }
     catch(err)
     {
-        alert(err.message);
+        document.getElementById("contactResult").innerHTML = jsonObject.error;
+        document.getElementById("contactResult").style.color = 'red';
     }
 }
 
@@ -396,7 +411,8 @@ function editContact(contactId, firstName, lastName, email)
         {
             if (this.readyState == 4 && this.status == 200) 
             {
-                alert("Contact updated successfully!");
+                document.getElementById("contactResult").innerHTML = "Contact updated successfully";
+                document.getElementById("contactResult").style.color = 'green';
                 searchContacts(); // Refresh contact list
             }
         };
@@ -404,7 +420,8 @@ function editContact(contactId, firstName, lastName, email)
     }
     catch(err)
     {
-        alert(err.message);
+        document.getElementById("contactResult").innerHTML = jsonObject.error;
+        document.getElementById("contactResult").style.color = 'red';
     }
 }
 document.addEventListener("DOMContentLoaded", togglePasswordVisibility);
