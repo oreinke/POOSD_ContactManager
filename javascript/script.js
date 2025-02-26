@@ -73,12 +73,13 @@ function doRegister()
                     let jsonObject = JSON.parse(xhr.responseText);
                     console.log("Parsed JSON:", jsonObject); // ✅ Debug parsed data
 
-                    if (jsonObject.error.length > 0) 
+                    if (jsonObject.error && jsonObject.error.length > 0) 
                     {
                         alert("Registration failed: " + jsonObject.error);      // Popup stating the reason for failure
                         document.getElementById("loginResult").innerHTML = jsonObject.error;
                         return;
-                    }
+                    } else if (jsonObject.message)
+		       {
 
                     alert("Registration successful! Please log in.");
                     
@@ -89,6 +90,7 @@ function doRegister()
                     document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
                     document.getElementById("toggle-text").innerText = "Register";
 		    window.location.href = "index.html";
+		       }
                 }
             }
         };
