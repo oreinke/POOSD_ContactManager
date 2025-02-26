@@ -33,13 +33,13 @@ function doRegister()
     let username = document.getElementById("register-username").value;
     let password = document.getElementById("register-password").value;
     let email = document.getElementById("register-email").value;
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert("Please enter a valid email address (e.g., user@example.com).");
-    return;  // Stop further processing
-    }
     if (!username || !password || !email || !name) {
     alert("Missing entries. Please fill in all fields.");
     return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    alert("Please enter a valid email address (e.g., user@example.com).");
+    return;  // Stop further processing
     }
     let name = document.getElementById("register-name").value;
 
