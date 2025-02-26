@@ -127,25 +127,6 @@ body {
 }
 
 /* CSS for contacts.html */
-:root {
-    --primary-color: #667eea;
-    --secondary-color: #764ba2;
-    --text-color: #333;
-    --label-color: #555;
-    --input-border: #ccc;
-    --button-hover: #5648a0;
-    --background-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    --border-radius: 12px;
-    --transition-speed: 0.3s;
-    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-}
 
 body {
     display: flex;
@@ -167,7 +148,6 @@ li {
     padding: 30px;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    width: 400px;
     text-align: center;
     animation: fadeIn 0.5s ease-in-out;
 }
@@ -211,5 +191,10 @@ li {
 
 .btn-primary:hover, .btn-success:hover, .btn-danger:hover {
     background: var(--button-hover);
+}
+
+.list-group {
+    max-height: 350px;
+    overflow-y: auto;
 }
 
