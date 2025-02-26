@@ -155,6 +155,13 @@ body {
     background: var(--background-gradient);
 }
 
+li {
+    display: flex;
+    justify-content: center;
+    padding: 0px 10px;
+    gap: 5px;
+}
+
 .container {
     background: white;
     padding: 30px;
@@ -198,6 +205,11 @@ body {
     transition: background var(--transition-speed);
 }
 
+.btn-danger {
+    background-color: red;
+}
+
 .btn-primary:hover, .btn-success:hover, .btn-danger:hover {
     background: var(--button-hover);
 }
+
