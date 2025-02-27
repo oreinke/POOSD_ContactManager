@@ -386,7 +386,7 @@ function searchContacts() {
             entry.innerHTML = `
                 <span>${contact.first_name} ${contact.last_name} - ${contact.email}</span>
                 <div>
-                    <button onclick="editContact(${contact.id}, '${contact.first_name}', '${contact.last_name}', '${contact.email}')" class="btn btn-primary btn-sm">Edit</button>
+                    <button onclick="openEditPanel(${contact.id}, '${contact.first_name}', '${contact.last_name}', '${contact.email}')" class="btn btn-primary btn-sm">Edit</button>
                     <button onclick="deleteContact(${contact.id})" class="btn btn-danger btn-sm">Delete</button>
                 </div>
             `;
@@ -430,40 +430,57 @@ function deleteContact(contactId)
 }
 
 // 🔹 Edit Contact
-function editContact(contactId, firstName, lastName, email)
-{
-    let newFirstName = prompt("Enter new first name:", firstName);
-    let newLastName = prompt("Enter new last name:", lastName);
-    let newEmail = prompt("Enter new email:", email);
-    
-    if (!newFirstName || !newLastName || !newEmail) return;
+let editingContactId = null;
 
-    let tmp = { id: contactId, userId: userId, first_name: newFirstName, last_name: newLastName, email: newEmail };
+document.getElementById("saveChangesButton").addEventListener("click", function() {
+    editContact();
+});
+
+function openEditPanel(contactId, firstName, lastName, email) {
+    editingContactId = contactId;
+    document.getElementById("edit_first_name").value = firstName;
+    document.getElementById("edit_last_name").value = lastName;
+    document.getElementById("edit_email").value = email;
+    document.getElementById("editContactPanel").style.display = "block";
+}
+
+function editContact() {
+    if (!editingContactId) return;
+    
+    let newFirstName = document.getElementById("edit_first_name").value;
+    let newLastName = document.getElementById("edit_last_name").value;
+    let newEmail = document.getElementById("edit_email").value;
+    
+    if (!newFirstName || !newLastName || !newEmail) {
+        document.getElementById("contactResult").innerHTML = "All fields are required.";
+        document.getElementById("contactResult").style.color = "red";
+        return;
+    }
+    
+    let tmp = { id: editingContactId, first_name: newFirstName, last_name: newLastName, email: newEmail };
     let jsonPayload = JSON.stringify(tmp);
     
     let url = urlBase + '/EditContacts.php';
-    
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     
-    try
-    {
-        xhr.onreadystatechange = function() 
-        {
-            if (this.readyState == 4 && this.status == 200) 
-            {
-                document.getElementById("contactResult").innerHTML = "Contact updated successfully";
-                document.getElementById("contactResult").style.color = 'green';
-                searchContacts(); // Refresh contact list
-            }
-        };
-        xhr.send(jsonPayload);
-    }
-    catch(err)
-    {
-        document.getElementById("contactResult").innerHTML = jsonObject.error;
-        document.getElementById("contactResult").style.color = 'red';
-    }
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("contactResult").innerHTML = "Contact updated successfully";
+            document.getElementById("contactResult").style.color = "green";
+            document.getElementById("editContactPanel").style.display = "none";
+            searchContacts(); // Refresh the contact list
+        }
+    };
+    
+    xhr.send(jsonPayload);
 }
+
+function cancelEdit() {
+    document.getElementById("editContactPanel").style.display = "none";
+    editingContactId = null;
+}
+
+
 document.addEventListener("DOMContentLoaded", togglePasswordVisibility);
