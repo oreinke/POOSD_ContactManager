@@ -7,11 +7,11 @@ let last_name = "";
 let name = "";
 
 function toggleAuth() {
-    let loginResult = document.getElementById("loginResult");
+    loginResult = document.getElementById("loginResult");
     if (loginResult) {
         loginResult.innerHTML = "";
     }
-    let registerResult = document.getElementById("registerResult");
+    registerResult = document.getElementById("registerResult");
     if (registerResult) {
         registerResult.innerHTML = "";
     }
