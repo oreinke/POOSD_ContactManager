@@ -115,9 +115,11 @@ function doRegister()
 		    {
 			toggleText.innerText = "Register";
 		    }
-			                    
+		    if (loginResult)
+		    {
                     loginResult.innerHTML = "Successful register";
                     loginResult.style.color = "green";
+		    }
                     window.location.href = "index.html";
                 }
             }
