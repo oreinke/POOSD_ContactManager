@@ -13,7 +13,7 @@
         $stmt = $conn->prepare("UPDATE contacts SET first_name=?, last_name=?, email=? WHERE id=? AND userid=?");
         $stmt->bind_param("sssii", $inData["first_name"], $inData["last_name"], $inData["email"], $inData["id"], $inData["userId"]);
         
-        if ($stmt->execute() && $stmt->affected_rows > 0) 
+        if ($stmt->execute()) 
         {
             returnWithSuccess("Contact updated successfully");
         } 
