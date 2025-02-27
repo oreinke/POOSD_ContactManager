@@ -1,6 +1,11 @@
 <?php
 
     $inData = getRequestInfo();
+    error_log("DEBUG userId: " . $inData["userId"]);
+    error_log("DEBUG firstName: " . $inData["first_name"]);
+    error_log("DEBUG lastName: " . $inData["last_name"]);
+    error_log("DEBUG email: " . $inData["email"]);
+
     // ✅ Check if userId is missing or invalid before proceeding
     if (!isset($inData["userId"]) || empty($inData["userId"])) {
         returnWithError("Missing user ID");
