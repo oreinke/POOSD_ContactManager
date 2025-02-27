@@ -448,7 +448,8 @@ function openEditPanel(contactId, firstName, lastName, email) {
     document.getElementById("edit_first_name").value = firstName;
     document.getElementById("edit_last_name").value = lastName;
     document.getElementById("edit_email").value = email;
-    document.getElementById("editContactPanel").style.display = "block";
+    //document.getElementById("editContactPanel").style.display = "block";
+    showEditPopup();
 }
 
 function editContact() {
@@ -480,7 +481,8 @@ function editContact() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("contactResult").innerHTML = "Contact updated successfully";
             document.getElementById("contactResult").style.color = "green";
-            document.getElementById("editContactPanel").style.display = "none";
+            //document.getElementById("editContactPanel").style.display = "none";
+	    hideEditPopup();
             searchContacts(); // Refresh the contact list
         }
     };
@@ -489,9 +491,22 @@ function editContact() {
 }
 
 function cancelEdit() {
-    document.getElementById("editContactPanel").style.display = "none";
+    editingContactId = null;
+    //document.getElementById("editContactPanel").style.display = "none";
     editingContactId = null;
 }
+function showEditPopup()
+{
+    document.getElementById("editBackdrop").style.display = "block";
+    document.getElementById("editContactPanel").style.display = "block";
+}
+
+function hideEditPopup()
+{
+    document.getElementById("editBackdrop").style.display = "none";
+    document.getElementById("editContactPanel").style.display = "none";
+}
+
 
 
 document.addEventListener("DOMContentLoaded", togglePasswordVisibility);
