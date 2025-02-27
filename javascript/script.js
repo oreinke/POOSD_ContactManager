@@ -453,10 +453,10 @@ function editContact() {
         registerResult.style.color = "red";
         return;
     }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-        registerResult.innerHTML = "Please enter a valid email address<br>(e.g., name@example.com).";
-        registerResult.style.color = "red";
-        return;  // Stop further processing
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(newEmail)) {
+    document.getElementById("registerResult").innerHTML = "Please enter a valid email address<br>(e.g., name@example.com).";
+    document.getElementById("registerResult").style.color = "red";
+    return;  // Stop further processing
     }
     
     let tmp = { id: editingContactId, userId: userId, first_name: newFirstName, last_name: newLastName, email: newEmail };
