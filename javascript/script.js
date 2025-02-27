@@ -155,6 +155,8 @@ function doLogin()
         return;
     }
 
+    
+
     let tmp = { username: login, password: password };
     let jsonPayload = JSON.stringify(tmp);
 

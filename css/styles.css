@@ -198,3 +198,6 @@ li {
     overflow-y: auto;
 }
 
+.editContactPanel {
+    display: none;
+}
