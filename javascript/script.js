@@ -21,12 +21,6 @@ function toggleAuth() {
     const toggleText = document.getElementById("toggle-text");
     const toggleTextPrefix = document.getElementById("toggle-text-prefix");
 
-    let loginResult = document.getElementById("loginResult");
-    if (loginResult) 
-    {
-        loginResult.innerHTML = "";
-    }
-
     if (loginForm.style.display === "none") {
         loginForm.style.display = "block";
         registerForm.style.display = "none";
