@@ -15,6 +15,14 @@ function toggleAuth() {
     if (registerResult) {
         registerResult.innerHTML = "";
     }
+    // Clear fields upon toggle
+    document.getElementById("login-username").value = "";
+    document.getElementById("login-password").value = "";
+    document.getElementById("register-username").value = "";
+    document.getElementById("register-password").value = "";
+    document.getElementById("register-email").value = "";
+    document.getElementById("register-name").value = "";
+	
     const loginForm = document.getElementById("login-form");
     const registerForm = document.getElementById("register-form");
     const authTitle = document.getElementById("auth-title");
