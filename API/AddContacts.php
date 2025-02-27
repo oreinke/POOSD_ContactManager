@@ -15,6 +15,15 @@
     } 
     else
     {
+        $stmt = $conn->prepare("SELECT id FROM contacts WHERE userid = ? AND email = ?");
+        $stmt->bind_param("is", $inData["userId"], $inData["email"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            returnWithError("Contact already exists");
+            exit();
+        }
+        $stmt->close();
         $stmt = $conn->prepare("INSERT INTO contacts (userid, first_name, last_name, email) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("isss", $inData["userId"], $inData["first_name"], $inData["last_name"], $inData["email"]);
         
