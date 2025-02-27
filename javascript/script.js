@@ -508,6 +508,15 @@ function hideEditPopup()
     document.getElementById("editContactPanel").style.display = "none";
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    let loginResult = document.getElementById("loginResult");
+    let message = localStorage.getItem("registrationSuccess");
 
+    if (loginResult && message) {
+        loginResult.innerHTML = message;
+        loginResult.style.color = "green";
+        localStorage.removeItem("registrationSuccess"); // Clear the message after displaying it
+    }
+});
 
 document.addEventListener("DOMContentLoaded", togglePasswordVisibility);
