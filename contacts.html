@@ -26,13 +26,13 @@
 	        <p id="contactResult" style="color: red; text-align: center;"></p>
         </div>
 
-        <div id="editContactPanel" class="mt-3" style="display: none;">
+        <div id="editContactPanel" class="mt-3">
             <h4>Edit Contact</h4>
             <input type="text" id="edit_first_name" class="form-control mb-2" placeholder="First Name">
             <input type="text" id="edit_last_name" class="form-control mb-2" placeholder="Last Name">
             <input type="email" id="edit_email" class="form-control mb-2" placeholder="Email">
             <button id="saveChangesBtn" class="btn btn-primary" onclick="editContact()">Save Changes</button>
-            <button id="cancelChangesBtn" class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
+            <button id="cancelChangesBtn" class="btn btn-danger" onclick="cancelEdit()">Cancel</button>
         </div>
         
         <ul id="contact-list" class="list-group mt-3"></ul>

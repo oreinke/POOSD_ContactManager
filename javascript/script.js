@@ -434,10 +434,6 @@ function deleteContact(contactId)
 // 🔹 Edit Contact
 let editingContactId = null;
 
-document.getElementById("saveChangesButton").addEventListener("click", function() {
-    editContact();
-});
-
 function openEditPanel(contactId, firstName, lastName, email) {
     editingContactId = contactId;
     document.getElementById("edit_first_name").value = firstName;
