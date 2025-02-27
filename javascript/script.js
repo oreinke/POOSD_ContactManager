@@ -455,7 +455,7 @@ function editContact() {
         return;
     }
     
-    let tmp = { id: editingContactId, first_name: newFirstName, last_name: newLastName, email: newEmail };
+    let tmp = { id: editingContactId, userId: userId, first_name: newFirstName, last_name: newLastName, email: newEmail };
     let jsonPayload = JSON.stringify(tmp);
     
     let url = urlBase + '/EditContacts.php';
