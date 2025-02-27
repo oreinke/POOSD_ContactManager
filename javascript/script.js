@@ -448,11 +448,15 @@ function editContact() {
     let newFirstName = document.getElementById("edit_first_name").value;
     let newLastName = document.getElementById("edit_last_name").value;
     let newEmail = document.getElementById("edit_email").value;
-    
     if (!newFirstName || !newLastName || !newEmail) {
-        document.getElementById("contactResult").innerHTML = "All fields are required.";
-        document.getElementById("contactResult").style.color = "red";
+        registerResult.innerHTML = "Please fill in all fields.";
+        registerResult.style.color = "red";
         return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        registerResult.innerHTML = "Please enter a valid email address<br>(e.g., name@example.com).";
+        registerResult.style.color = "red";
+        return;  // Stop further processing
     }
     
     let tmp = { id: editingContactId, userId: userId, first_name: newFirstName, last_name: newLastName, email: newEmail };
