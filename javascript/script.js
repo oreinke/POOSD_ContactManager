@@ -111,8 +111,12 @@ function doRegister()
                     document.getElementById("auth-title").innerText = "Login";
                     document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
                     document.getElementById("toggle-text").innerText = "Register";
-                    
-                    loginResult.style.innerHTML = "Successful register";
+		    if (toggleText)
+		    {
+			toggleText.innerText = "Register";
+		    }
+			                    
+                    loginResult.innerHTML = "Successful register";
                     loginResult.style.color = "green";
                     window.location.href = "index.html";
                 }
