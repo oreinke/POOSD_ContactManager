@@ -230,3 +230,17 @@ li {
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     z-index: 9999;       /* above the backdrop */
 }
+
+/* Center just the heading text */
+#editContactPanel h4 {
+    text-align: center; 
+    margin-bottom: 1rem;
+}
+
+/* Center the button group horizontally */
+#editButtons {
+    display: flex;
+    justify-content: center; /* horizontally center the buttons */
+    gap: 1rem;               /* space between them */
+    margin-top: 1rem;        /* some space above the buttons */
+}
