@@ -192,7 +192,7 @@ function doLogin()
 
                 if (jsonObject.error && jsonObject.error.length > 0) 
                 {
-                console.error("Login Error:", jsonObject.error); //Debug
+                console.log("Login Error:", jsonObject.error); //Debug
                 document.getElementById("loginResult").innerHTML = jsonObject.error;
                 document.getElementById("loginResult").style.color = 'red';
                 return;
