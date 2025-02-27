@@ -449,13 +449,13 @@ function editContact() {
     let newLastName = document.getElementById("edit_last_name").value;
     let newEmail = document.getElementById("edit_email").value;
     if (!newFirstName || !newLastName || !newEmail) {
-        registerResult.innerHTML = "Please fill in all fields.";
-        registerResult.style.color = "red";
-        return;
-    }
+    document.getElementById("editResult").innerHTML = "All fields are required.";
+    document.getElementById("editResult").style.color = "red";
+    return;
+    }	
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(newEmail)) {
-    document.getElementById("registerResult").innerHTML = "Please enter a valid email address<br>(e.g., name@example.com).";
-    document.getElementById("registerResult").style.color = "red";
+    document.getElementById("editResult").innerHTML = "Please enter a valid email address<br>(e.g., name@example.com).";
+    document.getElementById("editResult").style.color = "red";
     return;  // Stop further processing
     }
     
