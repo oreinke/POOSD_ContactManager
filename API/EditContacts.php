@@ -19,7 +19,7 @@
         } 
         else 
         {
-            returnWithError("No matching contact found or update failed");
+            returnWithError("No matching contact found or update failed" . $stmt->error);
         }
 
         $stmt->close();
