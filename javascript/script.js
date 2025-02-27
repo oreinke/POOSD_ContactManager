@@ -338,7 +338,7 @@ function addContact()
                 else
                 {
                     // Update confirmation
-                    document.getElementById("contactResult").innerHTML = "Successfully added " + firstName + lastName;
+                    document.getElementById("contactResult").innerHTML = "Successfully added " + firstName + " " + lastName;
                     document.getElementById("contactResult").style.color = 'green';
 
                     // Clear input fields:
