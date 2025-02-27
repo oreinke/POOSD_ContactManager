@@ -77,8 +77,6 @@ function doRegister()
 
     let tmp = { name: name, email: email, username: username, password: password };
     let jsonPayload = JSON.stringify(tmp);
-
-
     let url = urlBase + '/Register.php';
 
     let xhr = new XMLHttpRequest();
@@ -100,8 +98,10 @@ function doRegister()
 
                     if (jsonObject.error && jsonObject.error.length > 0) 
                     {
-                        document.getElementById("registerResult").innerHTML = jsonObject.error;
-                        document.getElementById("registerResult").style.color = 'red';
+			registerResult.innerHTML = jsonObject.error;
+                        registerResult.style.color = 'red';
+                        /*document.getElementById("registerResult").innerHTML = jsonObject.error;
+                        document.getElementById("registerResult").style.color = 'red'; */
                         return;
                     }
 
@@ -110,7 +110,8 @@ function doRegister()
                     document.getElementById("login-form").style.display = "block";
                     document.getElementById("auth-title").innerText = "Login";
                     document.getElementById("toggle-text-prefix").innerText = "Don't have an account?";
-                    document.getElementById("toggle-text").innerText = "Register";
+		    let toggleText = document.getElementById("toggle-text");
+                    //document.getElementById("toggle-text").innerText = "Register";
 		    if (toggleText)
 		    {
 			toggleText.innerText = "Register";
