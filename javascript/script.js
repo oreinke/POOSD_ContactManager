@@ -349,9 +349,9 @@ function addContact()
                     document.getElementById("contactResult").style.color = 'green';
 
                     // Clear input fields:
-                    firstName.value = "";
-                    lastName.value  = "";
-                    email.value      = "";
+                    document.getElementById("first_name").value = "";
+                    document.getElementById("last_name").value = "";
+                    document.getElementById("email").value = "";
                     
                     // Refresh contact list
                     searchContacts();
