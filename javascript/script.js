@@ -7,6 +7,14 @@ let last_name = "";
 let name = "";
 
 function toggleAuth() {
+    let loginResult = document.getElementById("loginResult");
+    if (loginResult) {
+        loginResult.innerHTML = "";
+    }
+    let registerResult = document.getElementById("registerResult");
+    if (registerResult) {
+        registerResult.innerHTML = "";
+    }
     const loginForm = document.getElementById("login-form");
     const registerForm = document.getElementById("register-form");
     const authTitle = document.getElementById("auth-title");
