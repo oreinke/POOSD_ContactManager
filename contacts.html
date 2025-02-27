@@ -49,8 +49,10 @@
 	    <input type="text" id="edit_last_name" class="form-control mb-2" placeholder="Last Name">
 	    <input type="email" id="edit_email" class="form-control mb-2" placeholder="Email">
 	    <p id="editResult" style="color: red; text-align: center;"></p>
-	    <button id="saveChangesBtn" class="btn btn-primary" onclick="editContact()">Save Changes</button>
-	    <button id="cancelChangesBtn" class="btn btn-danger" onclick="cancelEdit()">Cancel</button>
+	   <div id="editButtons">
+      		<button id="saveChangesBtn" class="btn btn-primary" onclick="editContact()">Save Changes</button>
+      		<button id="cancelChangesBtn" class="btn btn-danger" onclick="cancelEdit()">Cancel</button>
+    	    </div>
     </div>
 <script src="javascript/script.js"></script>
 <script> 
