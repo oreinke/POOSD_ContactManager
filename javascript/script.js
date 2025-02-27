@@ -493,7 +493,7 @@ function editContact() {
 function cancelEdit() {
     editingContactId = null;
     //document.getElementById("editContactPanel").style.display = "none";
-    hideEditPopop();
+    hideEditPopup();
 }
 function showEditPopup()
 {
