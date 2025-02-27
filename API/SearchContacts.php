@@ -13,10 +13,11 @@
     else
     {
         // Return ALL contacts for that user
-	    $stmt = $conn->prepare("SELECT id, first_name, last_name, email FROM contacts WHERE (first_name LIKE ? OR last_name LIKE ? OR email LIKE ?) AND  userid = ?");
+	    $stmt = $conn->prepare("SELECT id, first_name, last_name, email FROM contacts WHERE CONCAT_WS(' ', first_name, last_name, email) LIKE ? AND  userid = ?");
 
         $searchTerm = "%" . $inData["search"] . "%";
-        $stmt->bind_param("sssi", $searchTerm, $searchTerm, $searchTerm, $inData["userId"]);
+	$stmt->bind_param("si", $searchTerm, $inData["userId"]);
+        //$stmt->bind_param("sssi", $searchTerm, $searchTerm, $searchTerm, $inData["userId"]);
         $stmt->execute();
         
         $result = $stmt->get_result();
