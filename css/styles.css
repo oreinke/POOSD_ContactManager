@@ -134,6 +134,7 @@ body {
     align-items: center;
     height: 100vh;
     background: var(--background-gradient);
+    gap: 10px;
 }
 
 li {
